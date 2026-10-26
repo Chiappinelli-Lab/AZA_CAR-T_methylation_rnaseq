@@ -1,0 +1,600 @@
+"""
+RNA-seq pipeline for the publication repo: FASTQ -> SQuIRE gene-level count matrix.
+
+Copied from Haydar_RNAseq/RNAseq.standard.with.SQuiRE.Snakefile. Rule logic, tool versions and parameters are
+unchanged. Changes for the publication copy:
+- TEtranscripts rules (TEtranscripts, create_count_file_list, combine_counts) removed: they feed only the TE
+  analysis, which is not part of the paper figures.
+- No configfile: directive. run_all.sh passes config/paths.yaml (reference paths, SQuIRE container) and
+  workflow/01_rnaseq_pipeline/config.yaml (parameters), plus working_dir=<repo>/results/rnaseq/.
+- conda env yamls live next to this Snakefile (envs/); combine_squire_counts.py is found via workflow.basedir.
+
+Steps:
+1. FastQC on raw reads
+2. Trim Galore (adapter/quality trimming, FastQC on trimmed reads)
+3. STAR alignment + samtools sort (alignment QC only)
+4. Picard CollectRnaSeqMetrics (alignment QC only)
+5. MultiQC + alignment_summary.csv
+6. SQuIRE: build STAR index, Clean (RepeatMasker), Map (trimmed reads), Count
+7. combine_squire_counts.py -> output/results/counts/squire_{gene,locus,subfamily}_counts.tsv
+
+squire_gene_counts.tsv is the input to workflow/02_rnaseq_de. Raw reads are read from
+{working_dir}/raw_files/batch1/<sample>_R{1,2}.fastq.gz, which make_fastq_links.py creates.
+"""
+
+import os
+from os import path
+
+# Specify the local rules
+localrules: alignment_summary, squire_combine, all
+
+#### Validate the config ######################################################
+# reference paths sit under rnaseq_pipeline: in config/paths.yaml
+config.update(config.get('rnaseq_pipeline', {}))
+for key in ['working_dir', 'raw_file_extension', 'Picard_strandedness', 'STAR_genomeDir', 'STAR_GTF', 'REF_FLAT',
+            'rRNA_interval_list', 'SQuIRE_container', 'SQuIRE_genome_fasta', 'SQuIRE_rmsk', 'SQuIRE_read_length',
+            'SQuIRE_strandedness', 'SQuIRE_build_name', 'envs']:
+    assert key in config, "Missing config field -- '" + key + "'"
+
+assert config['working_dir'].endswith('/'), "working_dir must end in '/'!"
+assert path.exists(config['working_dir']), "working_dir " + config['working_dir'] + " does not exist."
+assert not config['raw_file_extension'].startswith('.'), "raw_file_extension should not start with '.'"
+assert config['Picard_strandedness'] in ['NONE', 'FIRST_READ_TRANSCRIPTION_STRAND', 'SECOND_READ_TRANSCRIPTION_STRAND'], \
+    "Picard strandedness must be 'NONE', 'FIRST_READ_TRANSCRIPTION_STRAND', or 'SECOND_READ_TRANSCRIPTION_STRAND'."
+for key in ['STAR_genomeDir', 'STAR_GTF', 'REF_FLAT', 'rRNA_interval_list', 'SQuIRE_container', 'SQuIRE_genome_fasta',
+            'SQuIRE_rmsk']:
+    assert path.exists(config[key]), "config " + key + ": " + str(config[key]) + " does not exist."
+assert isinstance(config['SQuIRE_read_length'], int) and config['SQuIRE_read_length'] > 0, "SQuIRE_read_length must be a positive integer."
+assert config['SQuIRE_strandedness'] in [0, 1, 2], "SQuIRE_strandedness must be 0, 1, or 2."
+
+# Store some of the config values as variables
+working_dir = config['working_dir']
+raw_file_ext = config['raw_file_extension']
+run_id = config.get('run_id', 'manual')  # set by run_all.sh via --config run_id=$SLURM_JOB_ID
+squire_build = config['SQuIRE_build_name']
+
+print("Successfully validated the configuration! Starting the pipeline...")
+
+#### Get batch/sample IDs ####################################################
+# Discover batches and samples from raw_files/{batch}/{sample}_R1.<ext>
+batches, sample_ids = glob_wildcards(working_dir + "raw_files/{batch}/{sample}_R1." + raw_file_ext)
+batch_sample_pairs = sorted(set(zip(batches, sample_ids)))
+print("Batch/Sample pairs: " + str(batch_sample_pairs))
+
+# Validate
+assert len(batch_sample_pairs) > 0, "No sample IDs found in any batch subdirectory of raw_files/."
+
+#### Rules ###################################################################
+rule all:
+    input:
+        [expand(working_dir + "output/FastQC/{batch}/{sample}_{read}_fastqc.html",
+                batch=b, sample=s, read=["R1", "R2"]) for b, s in batch_sample_pairs],
+        [expand(working_dir + "output/FastQC/{batch}/{sample}_{read}_fastqc.zip",
+                batch=b, sample=s, read=["R1", "R2"]) for b, s in batch_sample_pairs],
+        [working_dir + f"output/trimgalore/{b}/{s}_R1_val_1.fq.gz" for b, s in batch_sample_pairs],
+        [working_dir + f"output/trimgalore/{b}/{s}_R2_val_2.fq.gz" for b, s in batch_sample_pairs],
+        [working_dir + f"output/trimgalore/{b}/{s}_R1_val_1_fastqc.zip" for b, s in batch_sample_pairs],
+        [working_dir + f"output/trimgalore/{b}/{s}_R2_val_2_fastqc.zip" for b, s in batch_sample_pairs],
+        [working_dir + f"output/trimgalore/{b}/{s}_R1_val_1_fastqc.html" for b, s in batch_sample_pairs],
+        [working_dir + f"output/trimgalore/{b}/{s}_R2_val_2_fastqc.html" for b, s in batch_sample_pairs],
+        [expand(working_dir + "output/trimgalore/{batch}/{sample}_{read}.fastq.gz_trimming_report.txt",
+                batch=b, sample=s, read=["R1", "R2"]) for b, s in batch_sample_pairs],
+        [working_dir + f"output/star/{b}/{s}/{s}_Aligned.out.bam" for b, s in batch_sample_pairs],
+        [working_dir + f"output/star/{b}/{s}/sorted_{s}_Aligned.out.bam" for b, s in batch_sample_pairs],
+        [working_dir + f"output/star/{b}/{s}/{s}_Log.final.out" for b, s in batch_sample_pairs],
+        [working_dir + f"output/star/{b}/{s}/{s}_Log.out" for b, s in batch_sample_pairs],
+        [working_dir + f"output/star/{b}/{s}/{s}_Log.progress.out" for b, s in batch_sample_pairs],
+        [working_dir + f"output/star/{b}/{s}/{s}_SJ.out.tab" for b, s in batch_sample_pairs],
+        [working_dir + f"output/CollectRnaSeqMetrics/{b}/{s}_rnaseq_metrics.txt" for b, s in batch_sample_pairs],
+        working_dir + "output/multiqc/multiqc_report.html",
+        working_dir + "output/results/alignment_summary.csv",
+        working_dir + f"output/squire/fetch/{squire_build}_STAR/Genome",
+        working_dir + f"output/squire/clean/{squire_build}_all.bed",
+        [working_dir + f"output/squire/count/{b}/{s}/{s}_TEcounts.txt" for b, s in batch_sample_pairs],
+        [working_dir + f"output/squire/count/{b}/{s}/{s}_subFcounts.txt" for b, s in batch_sample_pairs],
+        [working_dir + f"output/squire/count/{b}/{s}/{s}_refGenecounts.txt" for b, s in batch_sample_pairs],
+        working_dir + "output/results/counts/squire_locus_counts.tsv",
+        working_dir + "output/results/counts/squire_subfamily_counts.tsv",
+        working_dir + "output/results/counts/squire_gene_counts.tsv"
+
+    shell:
+        "echo '--- Snakemake Pipeline Completed Successfully! ---'"
+
+rule FastQC:
+    message: "Running FastQC for {wildcards.batch}/{wildcards.sample}_{wildcards.read}"
+
+    input:
+        working_dir + 'raw_files/{batch}/{sample}_{read}.' + raw_file_ext
+
+    output:
+        working_dir + 'output/FastQC/{batch}/{sample}_{read}_fastqc.html',
+        working_dir + 'output/FastQC/{batch}/{sample}_{read}_fastqc.zip'
+
+    log: working_dir + f'logs/FastQC/{run_id}/{{batch}}/FastQC.{{sample}}_{{read}}.log'
+
+    params:
+        output_dir = working_dir + 'output/FastQC/{batch}'
+    
+    resources:
+        mem_mb = 4096,
+        runtime = 30
+
+    conda:
+        config['envs']['fastqc']
+    
+    shell:
+        """
+        # Create the output directory
+        mkdir -p {params.output_dir}
+        
+        # Run FastQC
+        fastqc \
+            --outdir {params.output_dir} \
+            {input} \
+            &> {log}
+        """
+
+rule TrimGalore:
+    message: "Running TrimGalore for {wildcards.batch}/{wildcards.sample}"
+
+    input:
+        r1 = working_dir + 'raw_files/{batch}/{sample}_R1.' + raw_file_ext,
+        r2 = working_dir + 'raw_files/{batch}/{sample}_R2.' + raw_file_ext
+
+    output:
+        working_dir + 'output/trimgalore/{batch}/{sample}_R1_val_1.fq.gz',
+        working_dir + 'output/trimgalore/{batch}/{sample}_R2_val_2.fq.gz',
+        working_dir + 'output/trimgalore/{batch}/{sample}_R1_val_1_fastqc.zip',
+        working_dir + 'output/trimgalore/{batch}/{sample}_R2_val_2_fastqc.zip',
+        working_dir + 'output/trimgalore/{batch}/{sample}_R1_val_1_fastqc.html',
+        working_dir + 'output/trimgalore/{batch}/{sample}_R2_val_2_fastqc.html',
+        working_dir + 'output/trimgalore/{batch}/{sample}_R1.fastq.gz_trimming_report.txt',
+        working_dir + 'output/trimgalore/{batch}/{sample}_R2.fastq.gz_trimming_report.txt'
+
+    log:
+        working_dir + f'logs/trimgalore/{run_id}/{{batch}}/{{sample}}.log'
+
+    params:
+        output_dir = working_dir + 'output/trimgalore/{batch}',
+    
+    resources:
+        mem_mb = 8192,
+        runtime = 600
+
+    conda:
+        config['envs']['trimgalore']
+    
+    shell:
+        """
+        # Create the output directory
+        mkdir -p {params.output_dir}
+
+        # Run TrimGalore
+        trim_galore \
+            --paired \
+            --gzip \
+            --fastqc \
+            --output_dir {params.output_dir} \
+            {input.r1} {input.r2} \
+            &> {log}
+        """
+
+rule STAR:
+    message: "Running STAR for {wildcards.batch}/{wildcards.sample}"
+
+    input:
+        read1 = working_dir + 'output/trimgalore/{batch}/{sample}_R1_val_1.fq.gz',
+        read2 = working_dir + 'output/trimgalore/{batch}/{sample}_R2_val_2.fq.gz'
+
+    output:
+        bam = working_dir + 'output/star/{batch}/{sample}/{sample}_Aligned.out.bam',
+        sorted_bam = working_dir + 'output/star/{batch}/{sample}/sorted_{sample}_Aligned.out.bam',
+        final_log = working_dir + 'output/star/{batch}/{sample}/{sample}_Log.final.out',
+        log_out = working_dir + 'output/star/{batch}/{sample}/{sample}_Log.out',
+        progress = working_dir + 'output/star/{batch}/{sample}/{sample}_Log.progress.out',
+        sj = working_dir + 'output/star/{batch}/{sample}/{sample}_SJ.out.tab',
+
+    log:
+        working_dir + f'logs/star/{run_id}/{{batch}}/{{sample}}.log'
+
+    params:
+        outdir = working_dir + 'output/star/{batch}/{sample}/',
+        prefix = working_dir + 'output/star/{batch}/{sample}/{sample}_',
+        genome_dir = config['STAR_genomeDir'],
+        gtf = config['STAR_GTF'],
+        multimap_nmax = 100,
+        winanchor_multimap = 200
+        
+    resources:
+        mem_mb = 65536,
+        runtime = 240,
+        cpus_per_task = 16
+
+    conda:
+        config['envs']['star']
+
+    shell:
+        """
+        # Create the output directory
+        mkdir -p {params.outdir}
+        
+        # Run STAR
+        STAR \
+            --runThreadN {resources.cpus_per_task} \
+            --genomeDir {params.genome_dir} \
+            --sjdbGTFfile {params.gtf} \
+            --readFilesIn {input.read1} {input.read2} \
+            --readFilesCommand zcat \
+            --outSAMtype BAM Unsorted \
+            --outSAMstrandField intronMotif \
+            --winAnchorMultimapNmax {params.winanchor_multimap} \
+            --outFilterMultimapNmax {params.multimap_nmax} \
+            --outFileNamePrefix {params.prefix} \
+            &> {log}
+        
+        # Sort the BAM file using samtools. This is necessary for Picard's CollectRnaSeqMetrics.
+        samtools sort -o {output.sorted_bam} {output.bam}
+        """
+
+rule CollectRnaSeqMetrics:
+    message: "Running CollectRnaSeqMetrics for {wildcards.batch}/{wildcards.sample}"
+
+    input:
+        bam = working_dir + 'output/star/{batch}/{sample}/sorted_{sample}_Aligned.out.bam',
+
+    output:
+        working_dir + 'output/CollectRnaSeqMetrics/{batch}/{sample}_rnaseq_metrics.txt',
+
+    log:
+        working_dir + f'logs/CollectRnaSeqMetrics/{run_id}/{{batch}}/{{sample}}_rnaseq_metrics.log'
+
+    params:
+        outdir = working_dir + 'output/CollectRnaSeqMetrics/{batch}',
+        ref_flat = config['REF_FLAT'],
+        rRNA_intervals = config['rRNA_interval_list'],
+        strandedness = config['Picard_strandedness']
+    
+    resources:
+        mem_mb = 16384,
+        runtime = 240
+
+    conda:
+        config['envs']['picard']
+    
+    shell:
+        """
+        # Create the output directory
+        mkdir -p {params.outdir}
+
+        # Run CollectRnaseqMetrics
+        picard CollectRnaSeqMetrics \
+            --INPUT {input.bam} \
+            --OUTPUT {output} \
+            --REF_FLAT {params.ref_flat} \
+            --RIBOSOMAL_INTERVALS {params.rRNA_intervals} \
+            --STRAND_SPECIFICITY {params.strandedness} \
+            &> {log}
+        """
+
+rule MultiQC:
+    message: "Running MultiQC"
+
+    input:
+        # Gather the FastQC reports from raw reads
+        fastqc_html = [expand(working_dir + "output/FastQC/{batch}/{sample}_{read}_fastqc.html",
+                              batch=b, sample=s, read=["R1", "R2"]) for b, s in batch_sample_pairs],
+        fastqc_zip = [expand(working_dir + "output/FastQC/{batch}/{sample}_{read}_fastqc.zip",
+                             batch=b, sample=s, read=["R1", "R2"]) for b, s in batch_sample_pairs],
+        trimmed_read1_html = [working_dir + f"output/trimgalore/{b}/{s}_R1_val_1_fastqc.html" for b, s in batch_sample_pairs],
+        trimmed_read1_zip = [working_dir + f"output/trimgalore/{b}/{s}_R1_val_1_fastqc.zip" for b, s in batch_sample_pairs],
+        trimmed_read2_html = [working_dir + f"output/trimgalore/{b}/{s}_R2_val_2_fastqc.html" for b, s in batch_sample_pairs],
+        trimmed_read2_zip = [working_dir + f"output/trimgalore/{b}/{s}_R2_val_2_fastqc.zip" for b, s in batch_sample_pairs],
+        star = [working_dir + f"output/star/{b}/{s}/{s}_Log.final.out" for b, s in batch_sample_pairs],
+        picard = [working_dir + f"output/CollectRnaSeqMetrics/{b}/{s}_rnaseq_metrics.txt" for b, s in batch_sample_pairs]
+    
+    output:
+        working_dir + "output/multiqc/multiqc_report.html",
+        working_dir + "output/multiqc/multiqc_data/multiqc_star.txt",
+        working_dir + "output/multiqc/multiqc_data/multiqc_picard_RnaSeqMetrics.txt"
+    
+    params:
+        outdir = working_dir + "output/multiqc"
+    
+    log:
+        working_dir + f"logs/multiqc/{run_id}/multiqc.log"
+    
+    resources:
+        mem_mb = 8192,
+        runtime = 60,
+        slurm_jobname = "'MultiQC'"
+
+    conda:
+        config['envs']['multiqc']
+
+    shell:
+        """
+        # Create output directory
+        mkdir -p {params.outdir}
+        
+        multiqc \
+            --force \
+            --outdir {params.outdir} \
+            {input} \
+            &> {log}
+        """
+
+rule alignment_summary:
+    message: "Creating alignment summary"
+
+    input:
+        star_multiqc = working_dir + "output/multiqc/multiqc_data/multiqc_star.txt",
+        picard_multiqc = working_dir + "output/multiqc/multiqc_data/multiqc_picard_RnaSeqMetrics.txt"
+
+    output:
+        summary = working_dir + "output/results/alignment_summary.csv"
+
+    run:
+        import pandas as pd
+        
+        # Read STAR alignment stats
+        star_df = pd.read_csv(input.star_multiqc, sep="\t")
+        star_cols = [
+            "Sample",
+            "avg_input_read_length",
+            "avg_mapped_read_length",
+            "total_reads",
+            "uniquely_mapped",
+            "uniquely_mapped_percent",
+            "multimapped",
+            "multimapped_percent",
+            "multimapped_toomany",
+            "multimapped_toomany_percent",
+            "unmapped_mismatches_percent",
+            "unmapped_tooshort_percent",
+            "unmapped_other_percent",
+            "mismatch_rate",
+            "num_splices",
+            "num_annotated_splices"
+        ]
+        star_df = star_df[star_cols]
+
+        # Our data is paired-end, so we need to multiply the read counts by 2. This is because STAR counts a paired-end read as one read.
+        star_df["total_reads"] = star_df["total_reads"] * 2
+        star_df["uniquely_mapped"] = star_df["uniquely_mapped"] * 2
+        star_df["multimapped"] = star_df["multimapped"] * 2
+        star_df["multimapped_toomany"] = star_df["multimapped_toomany"] * 2
+
+        # Read Picard RNA metrics
+        picard_df = pd.read_csv(input.picard_multiqc, sep="\t")
+        picard_cols = [
+            "Sample",
+            "PF_BASES",
+            "PF_ALIGNED_BASES",
+            "PF_NOT_ALIGNED_BASES",
+            "PCT_RIBOSOMAL_BASES",
+            "PCT_CODING_BASES",
+            "PCT_UTR_BASES",
+            "PCT_INTRONIC_BASES",
+            "PCT_INTERGENIC_BASES",
+            "PCT_MRNA_BASES",
+            "PCT_USABLE_BASES",
+            "PCT_CORRECT_STRAND_READS",
+            "MEDIAN_CV_COVERAGE",
+            "MEDIAN_5PRIME_BIAS",
+            "MEDIAN_3PRIME_BIAS",
+            "MEDIAN_5PRIME_TO_3PRIME_BIAS"
+        ]
+        picard_df = picard_df[picard_cols]
+
+        # Remove "sorted_" prefix from sample names
+        picard_df["Sample"] = picard_df["Sample"].str.replace("^sorted_", "", regex=True)
+
+        # Merge both tables
+        summary_df = star_df.merge(picard_df, on="Sample", how="outer")
+
+        # Save the output
+        summary_df.to_csv(output.summary, index=False)
+
+#### SQuIRE Rules ###############################################################
+
+rule squire_build_star_index:
+    message: "Building SQuIRE-compatible STAR index"
+
+    input:
+        fasta = config['SQuIRE_genome_fasta'],
+        gtf = config['STAR_GTF']
+
+    output:
+        genome = working_dir + f"output/squire/fetch/{squire_build}_STAR/Genome",
+        gtf_link = working_dir + f"output/squire/fetch/{squire_build}_refGene.gtf"
+
+    log:
+        working_dir + f"logs/squire/{run_id}/squire_build_star_index.log"
+
+    params:
+        genome_dir = working_dir + f"output/squire/fetch/{squire_build}_STAR",
+        sjdb_overhang = config['SQuIRE_read_length'] - 1
+
+    resources:
+        mem_mb = 65536,
+        runtime = 120,
+        cpus_per_task = 16
+
+    container:
+        config['SQuIRE_container']
+
+    shell:
+        """
+        mkdir -p {params.genome_dir}
+        STAR \
+            --runMode genomeGenerate \
+            --genomeDir {params.genome_dir} \
+            --genomeFastaFiles {input.fasta} \
+            --sjdbGTFfile {input.gtf} \
+            --sjdbOverhang {params.sjdb_overhang} \
+            --runThreadN {resources.cpus_per_task} \
+            &> {log}
+        ln -sf {input.gtf} {output.gtf_link}
+        """
+
+rule squire_clean:
+    message: "Running squire Clean to prepare RepeatMasker annotation"
+
+    input:
+        rmsk = config['SQuIRE_rmsk']
+
+    output:
+        working_dir + f"output/squire/clean/{squire_build}_all.bed"
+
+    log:
+        working_dir + f"logs/squire/{run_id}/squire_clean.log"
+
+    params:
+        outdir = working_dir + "output/squire/clean",
+        build = squire_build
+
+    resources:
+        mem_mb = 16384,
+        runtime = 60,
+        cpus_per_task = 4
+
+    container:
+        config['SQuIRE_container']
+
+    shell:
+        """
+        mkdir -p {params.outdir}
+        squire Clean \
+            -r {input.rmsk} \
+            -b {params.build} \
+            -o {params.outdir} \
+            -p {resources.cpus_per_task} \
+            &> {log}
+        """
+
+rule squire_map:
+    message: "Running squire Map for {wildcards.batch}/{wildcards.sample}"
+
+    input:
+        r1 = working_dir + "output/trimgalore/{batch}/{sample}_R1_val_1.fq.gz",
+        r2 = working_dir + "output/trimgalore/{batch}/{sample}_R2_val_2.fq.gz",
+        star_index = working_dir + f"output/squire/fetch/{squire_build}_STAR/Genome",
+        gtf_link = working_dir + f"output/squire/fetch/{squire_build}_refGene.gtf",
+        clean_bed = working_dir + f"output/squire/clean/{squire_build}_all.bed"
+
+    output:
+        working_dir + "output/squire/map/{batch}/{sample}/{sample}.bam"
+
+    log:
+        working_dir + f"logs/squire/{run_id}/{{batch}}/squire_map.{{sample}}.log"
+
+    params:
+        outdir = working_dir + "output/squire/map/{batch}/{sample}",
+        fetch_dir = working_dir + "output/squire/fetch",
+        read_length = config['SQuIRE_read_length'],
+        build = squire_build
+
+    resources:
+        mem_mb = 65536,
+        runtime = 240,
+        cpus_per_task = 16
+
+    container:
+        config['SQuIRE_container']
+
+    shell:
+        """
+        mkdir -p {params.outdir}
+        squire Map \
+            -1 {input.r1} \
+            -2 {input.r2} \
+            -r {params.read_length} \
+            -n {wildcards.sample} \
+            -o {params.outdir} \
+            -f {params.fetch_dir} \
+            -b {params.build} \
+            -p {resources.cpus_per_task} \
+            &> {log}
+        """
+
+rule squire_count:
+    message: "Running squire Count for {wildcards.batch}/{wildcards.sample}"
+
+    input:
+        bam = working_dir + "output/squire/map/{batch}/{sample}/{sample}.bam",
+        clean_bed = working_dir + f"output/squire/clean/{squire_build}_all.bed",
+        gtf_link = working_dir + f"output/squire/fetch/{squire_build}_refGene.gtf"
+
+    output:
+        te_counts = working_dir + "output/squire/count/{batch}/{sample}/{sample}_TEcounts.txt",
+        family_counts = working_dir + "output/squire/count/{batch}/{sample}/{sample}_subFcounts.txt",
+        gene_counts = working_dir + "output/squire/count/{batch}/{sample}/{sample}_refGenecounts.txt"
+
+    log:
+        working_dir + f"logs/squire/{run_id}/{{batch}}/squire_count.{{sample}}.log"
+
+    params:
+        outdir = working_dir + "output/squire/count/{batch}/{sample}",
+        map_dir = working_dir + "output/squire/map/{batch}/{sample}",
+        clean_dir = working_dir + "output/squire/clean",
+        fetch_dir = working_dir + "output/squire/fetch",
+        read_length = config['SQuIRE_read_length'],
+        strandedness = config['SQuIRE_strandedness'],
+        build = squire_build
+
+    # 1 thread: Count's -p only goes to StringTie, and multithreaded StringTie splits reads among overlapping
+    # transcripts in a thread-order-dependent way (2026-10-20: 42 of 1.7M gene-count cells differed between
+    # two 8-thread runs; TE counts were identical). -p 1 makes the gene counts repeatable.
+    resources:
+        mem_mb = 32768,
+        runtime = 1440,
+        cpus_per_task = 1
+
+    container:
+        config['SQuIRE_container']
+
+    shell:
+        """
+        mkdir -p {params.outdir}
+        squire Count \
+            -m {params.map_dir} \
+            -c {params.clean_dir} \
+            -f {params.fetch_dir} \
+            -n {wildcards.sample} \
+            -r {params.read_length} \
+            -s {params.strandedness} \
+            -b {params.build} \
+            -o {params.outdir} \
+            -p {resources.cpus_per_task} \
+            &> {log}
+        """
+
+rule squire_combine:
+    message: "Combining SQuIRE count files"
+
+    input:
+        locus_files = [working_dir + f"output/squire/count/{b}/{s}/{s}_TEcounts.txt" for b, s in batch_sample_pairs],
+        subfamily_files = [working_dir + f"output/squire/count/{b}/{s}/{s}_subFcounts.txt" for b, s in batch_sample_pairs],
+        gene_files = [working_dir + f"output/squire/count/{b}/{s}/{s}_refGenecounts.txt" for b, s in batch_sample_pairs]
+
+    output:
+        locus_counts = working_dir + "output/results/counts/squire_locus_counts.tsv",
+        subfamily_counts = working_dir + "output/results/counts/squire_subfamily_counts.tsv",
+        gene_counts = working_dir + "output/results/counts/squire_gene_counts.tsv"
+
+    params:
+        output_dir = working_dir + "output/results/counts",
+        script = os.path.join(workflow.basedir, "scripts", "combine_squire_counts.py")
+
+    conda:
+        config['envs']['combine_counts']
+
+    shell:
+        """
+        mkdir -p {params.output_dir}
+        python {params.script} \
+            --output_dir {params.output_dir} \
+            --locus_files {input.locus_files} \
+            --subfamily_files {input.subfamily_files} \
+            --gene_files {input.gene_files}
+        """

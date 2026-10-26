@@ -1,0 +1,50 @@
+# Copy to config/paths.yaml and fill in. External inputs: raw data, reference files and cluster settings. Edit this file for your system;
+# nothing else in the repo holds an absolute path. Every output goes under <repo>/results/ and <repo>/figures/.
+# Sample metadata goes in metadata/ (not tracked; see README, Setup).
+
+data:
+  # 60 FASTQs as delivered by WashU: <N>:<sample>.<LIB>.<LIB>_<flowcell>_S<n>_L006_R{1,2}_001.fastq.gz
+  rnaseq_fastq_dir: /path/to/rnaseq_fastq
+  # 24 MM285 IDAT pairs, one subfolder per Sentrix chip
+  methylation_idat_dir: /path/to/mm285_idats
+
+# Optional: a SQuIRE gene count matrix to use in place of the stage-1 output
+# (results/rnaseq/output/results/counts/squire_gene_counts.tsv). Leave empty for a normal run.
+# run_all.sh's RNASEQ_COUNTS environment variable overrides this.
+rnaseq_counts_override: ""
+
+# Optional: a folder holding the deposited preprocessed methylation data (sdfs_QCDPBM.rds, betas_QCDPBM.rds).
+# When set, 01_load_idats_qc.R copies these instead of preprocessing the IDATs. The paper's results come from
+# these files; a fresh IDAT run is seeded and repeatable but differs slightly (README, Reproducibility).
+# run_all.sh's METH_PREPROCESSED environment variable overrides this.
+methylation_preprocessed_override: ""
+
+references:
+  gencode_gtf: /path/to/gencode.vM32.primary_assembly.annotation.gtf
+  chain_mm10_to_mm39: /path/to/mm10ToMm39.over.chain
+  # ENCODE combined cCREs, mm10 (UCSC encodeCcreCombined.bb converted with bigBedToBed)
+  encode_ccre_mm10_bed: /path/to/encodeCcreCombined.bed
+  # Zhou lab InfiniumAnnotationV1 native mm39 MM285 manifest (liftover cross-check only)
+  mm285_native_mm39_manifest: /path/to/MM285.mm39.manifest.tsv.gz
+
+# Reference/container paths read by workflow/01_rnaseq_pipeline/Snakefile (keys = Snakemake config names)
+rnaseq_pipeline:
+  STAR_genomeDir: /path/to/STAR.index.150bp.vM32
+  STAR_GTF: /path/to/gencode.vM32.primary_assembly.annotation.gtf
+  REF_FLAT: /path/to/gencode.vM32.refFlat.txt
+  rRNA_interval_list: /path/to/gencode.vM32.rRNA.interval_list
+  SQuIRE_container: /path/to/squire_0.9.9.92.sif
+  SQuIRE_genome_fasta: /path/to/GRCm39.primary_assembly.genome.fa
+  SQuIRE_rmsk: /path/to/mm39.noHead.fa.out
+
+slurm:
+  account: your_slurm_account
+  partition: your_partition
+  email: ""          # --mail-user for pipeline jobs; empty = no mail
+  # squire_0.9.9.92.sif lacks the coreutils `join` that SQuIRE Count.py calls; a conda-forge join is bound in
+  squire_join_binary: /path/to/coreutils/bin/join
+  singularity_binds: /path/to/data,/path/to/references   # comma-separated host paths Apptainer must see
+  apptainer_module: apptainer/1.3.0   # module name on your cluster
+  conda_sh: ~/miniforge3/etc/profile.d/conda.sh
+  # where Snakemake keeps the per-rule conda envs (the existing ones are reused when the yamls are unchanged)
+  snakemake_conda_prefix: ~/snakemake_environments/RNAseq.standard.with.SQuiRE

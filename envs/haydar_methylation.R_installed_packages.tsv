@@ -1,0 +1,319 @@
+Package	Version	LibPath	Repository
+abind	1.4-8	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+admisc	0.41	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+annotate	1.88.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+AnnotationDbi	1.72.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+AnnotationFilter	1.34.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+AnnotationHub	4.0.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+ape	5.8-1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+aplot	0.3.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+askpass	1.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+assertthat	0.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+assorthead	1.4.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+backports	1.5.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+base	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+base64	2.0.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+base64enc	0.1-6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+beachmat	2.26.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+beanplot	1.3.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+BH	1.90.0-1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+BiasedUrn	2.0.12	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+bibtex	0.5.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Biobase	2.70.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+BiocBaseUtils	1.12.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+BiocFileCache	3.0.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+BiocGenerics	0.56.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+BiocIO	1.20.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+BiocManager	1.30.27	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+BiocParallel	1.44.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+BiocVersion	3.22.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+biomaRt	2.66.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+Biostrings	2.78.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+biovizBase	1.58.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+bit	4.6.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+bit64	4.8.6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+bitops	1.0-9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+blob	1.3.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+BSgenome	1.78.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+bslib	0.12.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+bsseq	1.46.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+bumphunter	1.52.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+cachem	1.1.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+cellranger	1.1.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+checkmate	2.3.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+cigarillo	1.0.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+circlize	0.4.18	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+cli	3.6.6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+clipr	0.8.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+clue	0.3-68	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+cluster	2.1.8.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+clusterProfiler	4.18.4	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+codetools	0.2-20	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+colorspace	2.1-3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+commonmark	2.0.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+compiler	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+ComplexHeatmap	2.26.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+cowplot	1.2.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+cpp11	0.5.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+crayon	1.5.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+crul	1.6.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+curl	8.0.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+data.table	1.18.6.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+datasets	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+DBI	1.3.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+dbplyr	2.6.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+DelayedArray	0.36.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+DelayedMatrixStats	1.32.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+deldir	2.0-4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+dichromat	2.0-1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+digest	0.6.39	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+dmGsea	1.0.2	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+DMRcate	3.6.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+doParallel	1.0.17	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+doRNG	1.8.6.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+DOSE	4.4.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+dplyr	1.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+dqrng	0.3.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+edgeR	4.8.2	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+ellipsis	0.3.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+enrichplot	1.30.5	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+ensembldb	2.34.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+evaluate	1.0.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ExperimentHub	3.0.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+fansi	1.0.7	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+farver	2.1.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+fastmap	1.2.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+fastmatch	1.1-8	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+FDb.InfiniumMethylation.hg19	2.2.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+fgsea	1.36.2	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+filelock	1.0.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+fontawesome	0.5.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+fontBitstreamVera	0.1.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+fontLiberation	0.1.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+fontquiver	0.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+foreach	1.5.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+foreign	0.8-91	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+formatR	1.14	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Formula	1.2-6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+fs	2.1.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+futile.logger	1.4.9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+futile.options	1.0.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+gdtools	0.5.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+genefilter	1.92.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+geneLenDataBase	1.46.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+generics	0.1.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+GenomeInfoDb	1.46.2	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+GenomicAlignments	1.46.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+GenomicFeatures	1.62.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+GenomicRanges	1.62.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+GEOquery	2.78.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+GetoptLong	1.1.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+gfonts	0.2.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggforce	0.5.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggfun	0.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggiraph	0.9.6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggnewscale	0.5.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggplot2	4.0.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggplotify	0.1.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggrepel	0.9.8	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggtangle	0.1.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ggtree	4.0.5	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+GlobalOptions	0.1.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+glue	1.8.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+GO.db	3.22.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+GOSemSim	2.36.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+goseq	1.62.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+graphics	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+grDevices	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+grid	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+gridExtra	2.3.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+gridGraphics	0.5-1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+gson	0.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+gtable	0.3.6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+gtools	3.9.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Gviz	1.54.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+h5mread	1.2.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+HDF5Array	1.38.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+highr	0.12	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Hmisc	5.2-6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+hms	1.1.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+htmlTable	2.5.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+htmltools	0.5.9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+htmlwidgets	1.6.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+httpcode	0.3.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+httpuv	1.6.17	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+httr	1.4.9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+httr2	1.3.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+igraph	2.3.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+IlluminaHumanMethylation450kanno.ilmn12.hg19	0.6.1	<conda_envs>/haydar_methylation/lib/R/library	NA
+IlluminaHumanMethylation450kmanifest	0.4.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+IlluminaHumanMethylationEPICanno.ilm10b4.hg19	0.6.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+IlluminaHumanMethylationEPICmanifest	0.3.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+IlluminaHumanMethylationEPICv2anno.20a1.hg38	1.0.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+IlluminaHumanMethylationEPICv2manifest	1.0.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+illuminaio	0.52.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+interp	1.1-6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+IRanges	2.44.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+isoband	0.3.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+iterators	1.0.14	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+jpeg	0.1-11	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+jquerylib	0.1.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+jsonlite	2.0.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+KEGGREST	1.50.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+knitr	1.51	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+labeling	0.4.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+lambda.r	1.2.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+later	1.4.8	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+lattice	0.23-1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+latticeExtra	0.6-31	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+lazyeval	0.2.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+lifecycle	1.0.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+limma	3.66.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+locfit	1.5-9.12	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+magick	2.9.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+magrittr	2.0.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+mapproj	1.2.12	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+maps	3.4.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+MASS	7.3-66	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+mathjaxr	2.0-0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Matrix	1.7-6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+MatrixGenerics	1.22.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+matrixStats	1.5.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+mclust	6.1.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+memoise	2.0.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+methods	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+methylGSA	1.28.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+methylumi	2.56.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+mgcv	1.9-4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+mime	0.13	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+minfi	1.56.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+missMethyl	1.44.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+multtest	2.66.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+munsell	0.5.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+nlme	3.1-170	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+nnet	7.3-21	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+nor1mix	1.3-3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+openssl	2.4.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+openxlsx	4.2.9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+org.Hs.eg.db	3.22.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+org.Mm.eg.db	3.22.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+otel	0.2.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+pals	1.10	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+parallel	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+patchwork	1.3.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+permute	0.9-10	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+pillar	1.11.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+pkgconfig	2.0.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+pkgmaker	0.32.10	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+plyr	1.8.9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+png	0.1-9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+polyclip	1.10-7	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+poolr	1.2-0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+preprocessCore	1.72.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+prettyunits	1.2.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+progress	1.2.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+promises	1.5.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+ProtGenerics	1.42.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+purrr	1.2.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+quadprog	1.5-8	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+qvalue	2.42.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+R.methodsS3	1.8.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+R.oo	1.27.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+R.utils	2.13.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+R6	2.6.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rappdirs	0.3.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+RColorBrewer	1.1-3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Rcpp	1.1.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+RcppEigen	0.3.4.0.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+RCurl	1.98-1.19	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+reactome.db	1.95.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+readr	2.2.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+readxl	1.5.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+registry	0.5-1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rematch	2.0.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rentrez	1.2.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+reshape	0.8.10	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+reshape2	1.4.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+restfulr	0.0.17	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rgl	1.3.36	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rhdf5	2.54.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+rhdf5filters	1.22.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+Rhdf5lib	1.32.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+Rhtslib	3.6.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+rjson	0.2.23	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rlang	1.3.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rmarkdown	2.32	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rngtools	1.5.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+RobustRankAggreg	1.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rpart	4.1.27	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+RPMM	1.25	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Rsamtools	2.26.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+RSQLite	3.53.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rstudioapi	0.19.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rtracklayer	1.70.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+ruv	0.9.7.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+rvest	1.0.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+S4Arrays	1.10.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+S4Vectors	0.48.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+S7	0.2.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+sass	0.4.10	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+scales	1.4.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+scatterpie	0.2.6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+scrime	1.3.7	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+selectr	0.6-0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+Seqinfo	1.0.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+sesame	1.28.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+sesameData	1.28.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+shape	1.4.6.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+shiny	1.14.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+siggenes	1.84.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+sitmo	2.0.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+snow	0.4-4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+sourcetools	0.1.7-2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+SparseArray	1.10.8	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+sparseMatrixStats	1.22.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+splines	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+statmod	1.5.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+stats	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+stats4	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+stringi	1.8.9	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+stringr	1.6.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+SummarizedExperiment	1.40.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+survival	3.8-11	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+sys	3.4.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+systemfonts	1.3.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tcltk	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+tibble	3.3.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tidydr	0.0.6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tidyr	1.3.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tidyselect	1.2.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tidytree	0.4.8	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tinytex	0.60	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tools	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+treeio	1.34.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+triebeard	0.4.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+tweenr	2.0.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+TxDb.Hsapiens.UCSC.hg19.knownGene	3.22.1	<conda_envs>/haydar_methylation/lib/R/library	NA
+TxDb.Mmusculus.UCSC.mm10.knownGene	3.10.0	<conda_envs>/haydar_methylation/lib/R/library	NA
+txdbmaker	1.6.2	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+tzdb	0.5.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+UCSC.utils	1.6.1	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+UpSetR	1.4.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+urltools	1.7.3.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+utf8	1.2.6	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+utils	4.5.3	<conda_envs>/haydar_methylation/lib/R/library	NA
+VariantAnnotation	1.56.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+vctrs	0.7.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+venn	1.13	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+viridisLite	0.4.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+vroom	1.7.1	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+wheatmap	0.2.4	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+withr	3.0.3	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+xfun	0.60	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+XML	3.99-0.22	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+xml2	1.6.0	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+xtable	1.8-8	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+XVector	0.50.0	<conda_envs>/haydar_methylation/lib/R/library	Bioconductor 3.22
+yaml	2.3.12	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+yulab.utils	0.2.5	<conda_envs>/haydar_methylation/lib/R/library	CRAN
+zip	3.0.2	<conda_envs>/haydar_methylation/lib/R/library	CRAN

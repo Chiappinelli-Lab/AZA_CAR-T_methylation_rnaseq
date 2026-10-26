@@ -1,0 +1,24 @@
+# Snakemake 8 + snakemake-executor-plugin-slurm profile. run_all.sh renders this template into
+# results/rnaseq/slurm_profile/config.yaml, filling @...@ from config/paths.yaml (slurm:).
+# Per-rule resources (mem, runtime, cpus) are in the Snakefile's resources: blocks.
+executor: slurm
+slurm-logdir: "logs/slurm"
+jobs: 100
+use-conda: true
+use-singularity: true
+# squire_0.9.9.92.sif lacks the coreutils `join` that SQuIRE Count.py shells out to; bind in a conda-forge join
+singularity-args: "--bind @BINDS@ --bind @JOIN@:/usr/local/bin/join"
+rerun-incomplete: true
+keep-going: true
+printshellcmds: true
+show-failed-logs: true
+default-resources:
+  slurm_account: @ACCOUNT@
+  slurm_partition: @PARTITION@
+  mem_mb: 8192
+  runtime: 240
+  cpus_per_task: 1
+  slurm_jobname: "'{rule}.{wildcards.sample}'"
+  slurm_extra: "@SLURM_EXTRA@"
+retries: 1
+latency-wait: 60

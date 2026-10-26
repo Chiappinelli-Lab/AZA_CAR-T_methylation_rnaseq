@@ -1,0 +1,247 @@
+Package	Version	LibPath	Repository
+abind	1.4-8	<conda_envs>/deseq2/lib/R/library	CRAN
+admisc	0.41	<conda_envs>/deseq2/lib/R/library	CRAN
+AnnotationDbi	1.72.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+ape	5.8-1	<conda_envs>/deseq2/lib/R/library	CRAN
+apeglm	1.32.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+aplot	0.3.1	<conda_envs>/deseq2/lib/R/library	CRAN
+aroma.light	3.40.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+ashr	2.2-63	<conda_envs>/deseq2/lib/R/library	CRAN
+askpass	1.2.1	<conda_envs>/deseq2/lib/R/library	CRAN
+base	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+base64enc	0.1-6	<conda_envs>/deseq2/lib/R/library	CRAN
+bbmle	1.0.26	<conda_envs>/deseq2/lib/R/library	CRAN
+bdsmatrix	1.3-7	<conda_envs>/deseq2/lib/R/library	CRAN
+BH	1.90.0-1	<conda_envs>/deseq2/lib/R/library	CRAN
+Biobase	2.70.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+BiocFileCache	3.0.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+BiocGenerics	0.56.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+BiocIO	1.20.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+BiocManager	1.30.27	<conda_envs>/deseq2/lib/R/library	CRAN
+BiocParallel	1.44.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+BiocVersion	3.22.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+biomaRt	2.66.2	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+Biostrings	2.78.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+bit	4.6.0	<conda_envs>/deseq2/lib/R/library	CRAN
+bit64	4.8.2	<conda_envs>/deseq2/lib/R/library	CRAN
+bitops	1.1-0	<conda_envs>/deseq2/lib/R/library	CRAN
+blob	1.3.0	<conda_envs>/deseq2/lib/R/library	CRAN
+bslib	0.11.0	<conda_envs>/deseq2/lib/R/library	CRAN
+cachem	1.1.0	<conda_envs>/deseq2/lib/R/library	CRAN
+cigarillo	1.0.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+cli	3.6.6	<conda_envs>/deseq2/lib/R/library	CRAN
+cluster	2.1.8.3	<conda_envs>/deseq2/lib/R/library	CRAN
+clusterProfiler	4.18.4	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+coda	0.19-4.1	<conda_envs>/deseq2/lib/R/library	CRAN
+codetools	0.2-20	<conda_envs>/deseq2/lib/R/library	CRAN
+colorspace	2.1-2	<conda_envs>/deseq2/lib/R/library	CRAN
+commonmark	2.0.0	<conda_envs>/deseq2/lib/R/library	CRAN
+compiler	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+cowplot	1.2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+cpp11	0.5.5	<conda_envs>/deseq2/lib/R/library	CRAN
+crayon	1.5.3	<conda_envs>/deseq2/lib/R/library	CRAN
+crosstalk	1.2.2	<conda_envs>/deseq2/lib/R/library	CRAN
+crul	1.6.0	<conda_envs>/deseq2/lib/R/library	CRAN
+curl	7.1.0	<conda_envs>/deseq2/lib/R/library	CRAN
+data.table	1.17.8	<conda_envs>/deseq2/lib/R/library	CRAN
+datasets	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+DBI	1.3.0	<conda_envs>/deseq2/lib/R/library	CRAN
+dbplyr	2.6.0	<conda_envs>/deseq2/lib/R/library	CRAN
+DelayedArray	0.36.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+deldir	2.0-4	<conda_envs>/deseq2/lib/R/library	CRAN
+DESeq2	1.50.2	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+digest	0.6.39	<conda_envs>/deseq2/lib/R/library	CRAN
+DOSE	4.4.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+dplyr	1.2.1	<conda_envs>/deseq2/lib/R/library	CRAN
+edgeR	4.8.2	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+ellipsis	0.3.3	<conda_envs>/deseq2/lib/R/library	CRAN
+emdbook	1.3.14	<conda_envs>/deseq2/lib/R/library	CRAN
+enrichplot	1.30.4	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+etrunct	0.1	<conda_envs>/deseq2/lib/R/library	CRAN
+evaluate	1.0.5	<conda_envs>/deseq2/lib/R/library	CRAN
+fansi	1.0.7	<conda_envs>/deseq2/lib/R/library	CRAN
+farver	2.1.2	<conda_envs>/deseq2/lib/R/library	CRAN
+fastmap	1.2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+fastmatch	1.1-8	<conda_envs>/deseq2/lib/R/library	CRAN
+fgsea	1.36.2	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+filelock	1.0.3	<conda_envs>/deseq2/lib/R/library	CRAN
+fontawesome	0.5.3	<conda_envs>/deseq2/lib/R/library	CRAN
+fontBitstreamVera	0.1.1	<conda_envs>/deseq2/lib/R/library	CRAN
+fontLiberation	0.1.0	<conda_envs>/deseq2/lib/R/library	CRAN
+fontquiver	0.2.1	<conda_envs>/deseq2/lib/R/library	CRAN
+formatR	1.14	<conda_envs>/deseq2/lib/R/library	CRAN
+fs	2.1.0	<conda_envs>/deseq2/lib/R/library	CRAN
+futile.logger	1.4.9	<conda_envs>/deseq2/lib/R/library	CRAN
+futile.options	1.0.1	<conda_envs>/deseq2/lib/R/library	CRAN
+gdtools	0.5.1	<conda_envs>/deseq2/lib/R/library	CRAN
+generics	0.1.4	<conda_envs>/deseq2/lib/R/library	CRAN
+GenomicRanges	1.62.1	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+gfonts	0.2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+ggforce	0.5.0	<conda_envs>/deseq2/lib/R/library	CRAN
+ggfun	0.2.1	<conda_envs>/deseq2/lib/R/library	CRAN
+ggiraph	0.9.6	<conda_envs>/deseq2/lib/R/library	CRAN
+ggnewscale	0.5.2	<conda_envs>/deseq2/lib/R/library	CRAN
+ggplot2	4.0.3	<conda_envs>/deseq2/lib/R/library	CRAN
+ggplotify	0.1.3	<conda_envs>/deseq2/lib/R/library	CRAN
+ggrepel	0.9.8	<conda_envs>/deseq2/lib/R/library	CRAN
+ggtangle	0.1.2	<conda_envs>/deseq2/lib/R/library	CRAN
+ggtext	0.2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+ggtree	4.0.4	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+ggvenn	0.1.19	<conda_envs>/deseq2/lib/R/library	CRAN
+glue	1.8.1	<conda_envs>/deseq2/lib/R/library	CRAN
+GO.db	3.22.0	<conda_envs>/deseq2/lib/R/library	NA
+GOSemSim	2.36.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+gprofiler2	0.2.4	<conda_envs>/deseq2/lib/R/library	CRAN
+graphics	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+grDevices	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+grid	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+gridBase	0.4-7	<conda_envs>/deseq2/lib/R/library	CRAN
+gridExtra	2.3.1	<conda_envs>/deseq2/lib/R/library	CRAN
+gridGraphics	0.5-1	<conda_envs>/deseq2/lib/R/library	CRAN
+gridtext	0.1.6	<conda_envs>/deseq2/lib/R/library	CRAN
+gson	0.2.1	<conda_envs>/deseq2/lib/R/library	CRAN
+gtable	0.3.6	<conda_envs>/deseq2/lib/R/library	CRAN
+here	1.0.2	<conda_envs>/deseq2/lib/R/library	CRAN
+highr	0.12	<conda_envs>/deseq2/lib/R/library	CRAN
+hms	1.1.4	<conda_envs>/deseq2/lib/R/library	CRAN
+htmltools	0.5.9	<conda_envs>/deseq2/lib/R/library	CRAN
+htmlwidgets	1.6.4	<conda_envs>/deseq2/lib/R/library	CRAN
+httpcode	0.3.0	<conda_envs>/deseq2/lib/R/library	CRAN
+httpuv	1.6.17	<conda_envs>/deseq2/lib/R/library	CRAN
+httr	1.4.8	<conda_envs>/deseq2/lib/R/library	CRAN
+httr2	1.3.0	<conda_envs>/deseq2/lib/R/library	CRAN
+hwriter	1.3.2.1	<conda_envs>/deseq2/lib/R/library	CRAN
+igraph	2.3.3	<conda_envs>/deseq2/lib/R/library	CRAN
+interp	1.1-6	<conda_envs>/deseq2/lib/R/library	CRAN
+invgamma	1.2	<conda_envs>/deseq2/lib/R/library	CRAN
+IRanges	2.44.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+IRdisplay	1.1	<conda_envs>/deseq2/lib/R/library	NA
+IRkernel	1.3.2	<conda_envs>/deseq2/lib/R/library	CRAN
+irlba	2.3.7	<conda_envs>/deseq2/lib/R/library	CRAN
+isoband	0.3.0	<conda_envs>/deseq2/lib/R/library	CRAN
+jpeg	0.1-11	<conda_envs>/deseq2/lib/R/library	CRAN
+jquerylib	0.1.4	<conda_envs>/deseq2/lib/R/library	CRAN
+jsonlite	2.0.0	<conda_envs>/deseq2/lib/R/library	CRAN
+KEGGREST	1.50.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+knitr	1.51	<conda_envs>/deseq2/lib/R/library	CRAN
+labeling	0.4.3	<conda_envs>/deseq2/lib/R/library	CRAN
+lambda.r	1.2.4	<conda_envs>/deseq2/lib/R/library	CRAN
+later	1.4.8	<conda_envs>/deseq2/lib/R/library	CRAN
+lattice	0.22-9	<conda_envs>/deseq2/lib/R/library	CRAN
+latticeExtra	0.6-31	<conda_envs>/deseq2/lib/R/library	CRAN
+lazyeval	0.2.3	<conda_envs>/deseq2/lib/R/library	CRAN
+lifecycle	1.0.5	<conda_envs>/deseq2/lib/R/library	CRAN
+limma	3.66.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+litedown	0.10	<conda_envs>/deseq2/lib/R/library	CRAN
+locfit	1.5-9.12	<conda_envs>/deseq2/lib/R/library	CRAN
+magrittr	2.0.5	<conda_envs>/deseq2/lib/R/library	CRAN
+markdown	2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+MASS	7.3-66	<conda_envs>/deseq2/lib/R/library	CRAN
+Matrix	1.7-5	<conda_envs>/deseq2/lib/R/library	CRAN
+MatrixGenerics	1.22.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+matrixStats	1.5.0	<conda_envs>/deseq2/lib/R/library	CRAN
+memoise	2.0.1	<conda_envs>/deseq2/lib/R/library	CRAN
+methods	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+mime	0.13	<conda_envs>/deseq2/lib/R/library	CRAN
+mixsqp	0.3-54	<conda_envs>/deseq2/lib/R/library	CRAN
+munsell	0.5.1	<conda_envs>/deseq2/lib/R/library	CRAN
+mvtnorm	1.4-2	<conda_envs>/deseq2/lib/R/library	CRAN
+nlme	3.1-170	<conda_envs>/deseq2/lib/R/library	CRAN
+NLP	0.3-2	<conda_envs>/deseq2/lib/R/library	CRAN
+numDeriv	2016.8-1.1	<conda_envs>/deseq2/lib/R/library	CRAN
+openssl	2.4.2	<conda_envs>/deseq2/lib/R/library	CRAN
+org.Hs.eg.db	3.22.0	<conda_envs>/deseq2/lib/R/library	NA
+org.Mm.eg.db	3.22.0	<conda_envs>/deseq2/lib/R/library	NA
+otel	0.2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+parallel	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+patchwork	1.3.2	<conda_envs>/deseq2/lib/R/library	CRAN
+pbdZMQ	0.3-14	<conda_envs>/deseq2/lib/R/library	CRAN
+pheatmap	1.0.13	<conda_envs>/deseq2/lib/R/library	CRAN
+pillar	1.11.1	<conda_envs>/deseq2/lib/R/library	CRAN
+pkgconfig	2.0.3	<conda_envs>/deseq2/lib/R/library	CRAN
+plogr	0.2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+plotly	4.12.1	<conda_envs>/deseq2/lib/R/library	CRAN
+plyr	1.8.9	<conda_envs>/deseq2/lib/R/library	CRAN
+png	0.1-9	<conda_envs>/deseq2/lib/R/library	CRAN
+polyclip	1.10-7	<conda_envs>/deseq2/lib/R/library	CRAN
+prettyunits	1.2.0	<conda_envs>/deseq2/lib/R/library	CRAN
+progress	1.2.3	<conda_envs>/deseq2/lib/R/library	CRAN
+promises	1.5.0	<conda_envs>/deseq2/lib/R/library	CRAN
+purrr	1.2.2	<conda_envs>/deseq2/lib/R/library	CRAN
+pwalign	1.6.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+qvalue	2.42.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+R.methodsS3	1.8.2	<conda_envs>/deseq2/lib/R/library	CRAN
+R.oo	1.27.1	<conda_envs>/deseq2/lib/R/library	CRAN
+R.utils	2.13.0	<conda_envs>/deseq2/lib/R/library	CRAN
+R6	2.6.1	<conda_envs>/deseq2/lib/R/library	CRAN
+rappdirs	0.3.4	<conda_envs>/deseq2/lib/R/library	CRAN
+RColorBrewer	1.1-3	<conda_envs>/deseq2/lib/R/library	CRAN
+Rcpp	1.1.1-1.1	<conda_envs>/deseq2/lib/R/library	CRAN
+RcppArmadillo	15.4.0-1	<conda_envs>/deseq2/lib/R/library	CRAN
+RcppEigen	0.3.4.0.2	<conda_envs>/deseq2/lib/R/library	CRAN
+RcppNumerical	0.7-0	<conda_envs>/deseq2/lib/R/library	CRAN
+RcppTOML	0.2.3	<conda_envs>/deseq2/lib/R/library	CRAN
+RCurl	1.98-1.20	<conda_envs>/deseq2/lib/R/library	CRAN
+repr	1.1.7	<conda_envs>/deseq2/lib/R/library	CRAN
+reshape2	1.4.5	<conda_envs>/deseq2/lib/R/library	CRAN
+reticulate	1.46.0	<conda_envs>/deseq2/lib/R/library	CRAN
+rjson	0.2.23	<conda_envs>/deseq2/lib/R/library	CRAN
+rlang	1.3.0	<conda_envs>/deseq2/lib/R/library	CRAN
+rmarkdown	2.32	<conda_envs>/deseq2/lib/R/library	CRAN
+rprojroot	2.1.1	<conda_envs>/deseq2/lib/R/library	CRAN
+rrvgo	1.22.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+RSpectra	0.16-2	<conda_envs>/deseq2/lib/R/library	CRAN
+RSQLite	3.53.1	<conda_envs>/deseq2/lib/R/library	CRAN
+S4Arrays	1.10.1	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+S4Vectors	0.48.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+S7	0.2.2	<conda_envs>/deseq2/lib/R/library	CRAN
+sass	0.4.10	<conda_envs>/deseq2/lib/R/library	CRAN
+scales	1.4.0	<conda_envs>/deseq2/lib/R/library	CRAN
+scatterpie	0.2.6	<conda_envs>/deseq2/lib/R/library	CRAN
+Seqinfo	1.0.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+shiny	1.14.0	<conda_envs>/deseq2/lib/R/library	CRAN
+slam	0.1-55	<conda_envs>/deseq2/lib/R/library	CRAN
+snow	0.4-4	<conda_envs>/deseq2/lib/R/library	CRAN
+sourcetools	0.1.7-2	<conda_envs>/deseq2/lib/R/library	CRAN
+SparseArray	1.10.8	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+splines	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+SQUAREM	2026.1	<conda_envs>/deseq2/lib/R/library	CRAN
+statmod	1.5.2	<conda_envs>/deseq2/lib/R/library	CRAN
+stats	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+stats4	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+stringi	1.8.9	<conda_envs>/deseq2/lib/R/library	CRAN
+stringr	1.6.0	<conda_envs>/deseq2/lib/R/library	CRAN
+SummarizedExperiment	1.40.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+sys	3.4.3	<conda_envs>/deseq2/lib/R/library	CRAN
+systemfonts	1.3.2	<conda_envs>/deseq2/lib/R/library	CRAN
+tcltk	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+tibble	3.3.1	<conda_envs>/deseq2/lib/R/library	CRAN
+tidydr	0.0.6	<conda_envs>/deseq2/lib/R/library	CRAN
+tidyr	1.3.2	<conda_envs>/deseq2/lib/R/library	CRAN
+tidyselect	1.2.1	<conda_envs>/deseq2/lib/R/library	CRAN
+tidytree	0.4.8	<conda_envs>/deseq2/lib/R/library	CRAN
+tinytex	0.60	<conda_envs>/deseq2/lib/R/library	CRAN
+tm	0.7-18	<conda_envs>/deseq2/lib/R/library	CRAN
+tools	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+treeio	1.34.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+treemap	2.4-4	<conda_envs>/deseq2/lib/R/library	CRAN
+triebeard	0.4.1	<conda_envs>/deseq2/lib/R/library	CRAN
+truncnorm	1.0-9	<conda_envs>/deseq2/lib/R/library	CRAN
+tweenr	2.0.3	<conda_envs>/deseq2/lib/R/library	CRAN
+umap	0.2.10.0	<conda_envs>/deseq2/lib/R/library	CRAN
+UpSetR	1.4.1	<conda_envs>/deseq2/lib/R/library	CRAN
+urltools	1.7.3.1	<conda_envs>/deseq2/lib/R/library	CRAN
+utf8	1.2.6	<conda_envs>/deseq2/lib/R/library	CRAN
+utils	4.5.3	<conda_envs>/deseq2/lib/R/library	NA
+uuid	1.2-2	<conda_envs>/deseq2/lib/R/library	CRAN
+vctrs	0.7.3	<conda_envs>/deseq2/lib/R/library	CRAN
+venn	1.13	<conda_envs>/deseq2/lib/R/library	CRAN
+viridisLite	0.4.3	<conda_envs>/deseq2/lib/R/library	CRAN
+withr	3.0.3	<conda_envs>/deseq2/lib/R/library	CRAN
+wordcloud	2.6	<conda_envs>/deseq2/lib/R/library	CRAN
+xfun	0.60	<conda_envs>/deseq2/lib/R/library	CRAN
+xml2	1.6.0	<conda_envs>/deseq2/lib/R/library	CRAN
+xtable	1.8-8	<conda_envs>/deseq2/lib/R/library	CRAN
+XVector	0.50.0	<conda_envs>/deseq2/lib/R/library	Bioconductor 3.22
+yaml	2.3.12	<conda_envs>/deseq2/lib/R/library	CRAN
+yulab.utils	0.2.4	<conda_envs>/deseq2/lib/R/library	CRAN

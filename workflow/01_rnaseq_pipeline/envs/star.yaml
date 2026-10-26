@@ -1,0 +1,9 @@
+name: star
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+channel_priority: strict
+dependencies:
+  - star=2.7.0e
+  - samtools=1.21

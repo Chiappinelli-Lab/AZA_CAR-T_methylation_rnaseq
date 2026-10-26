@@ -1,0 +1,8 @@
+name: multiqc
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+channel_priority: strict
+dependencies:
+  - multiqc=1.25

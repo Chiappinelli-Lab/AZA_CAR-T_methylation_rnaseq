@@ -1,0 +1,12 @@
+name: snakemake.RNAseq.standard.with.SQuiRE
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+channel_priority: strict
+dependencies:
+  - snakemake=8.20.6
+  - snakemake-executor-plugin-slurm=0.12.1
+  - python=3.11
+  - pandas=2.2.2
+  - conda>=24.7.1

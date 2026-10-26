@@ -1,0 +1,14 @@
+# Pipeline parameters (unchanged from Haydar_RNAseq/config/RNAseq.standard.with.SQuiRE.Snakemake.config.yaml).
+# Reference/container paths are in config/paths.yaml (rnaseq_pipeline:); working_dir is set by run_all.sh.
+raw_file_extension: 'fastq.gz'
+Picard_strandedness: 'SECOND_READ_TRANSCRIPTION_STRAND'  # rRNA-depletion total-RNA stranded (dUTP-style, reverse) library
+SQuIRE_read_length: 151   # untrimmed read length; --sjdbOverhang (read_length-1) and -r in squire Map/Count
+SQuIRE_strandedness: 1    # squire Count: 0=unstranded, 1=first-strand/dUTP/TruSeq, 2=second-strand
+SQuIRE_build_name: "mm39" # genome build label passed to squire -b and used in output path names
+envs:                     # relative to this directory
+  fastqc: "envs/fastqc.yaml"
+  trimgalore: "envs/trimGalore.yaml"
+  picard: "envs/picard.yaml"
+  combine_counts: "envs/combine_counts.yaml"
+  star: "envs/star.yaml"
+  multiqc: "envs/multiqc.yaml"

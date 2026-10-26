@@ -1,0 +1,8 @@
+name: picard
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+channel_priority: strict
+dependencies:
+  - picard=3.2.0

@@ -1,0 +1,8 @@
+name: trim_galore
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+channel_priority: strict
+dependencies:
+  - trim-galore=0.6.10

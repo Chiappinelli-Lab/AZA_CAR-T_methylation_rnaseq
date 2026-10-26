@@ -1,0 +1,39 @@
+# R packages installed outside conda (install.packages / BiocManager), so absent from the conda exports.
+# Versions as installed on 2026-10-20. Bioconductor 3.22.
+[deseq2]
+aroma.light	3.40.0
+BiocFileCache	3.0.0
+BiocIO	1.20.0
+BiocManager	1.30.27
+BiocVersion	3.22.0
+biomaRt	2.66.2
+bitops	1.1-0
+cigarillo	1.0.0
+crosstalk	1.2.2
+dbplyr	2.6.0
+deldir	2.0-4
+edgeR	4.8.2
+filelock	1.0.3
+ggvenn	0.1.19
+gprofiler2	0.2.4
+hms	1.1.4
+httr2	1.3.0
+hwriter	1.3.2.1
+interp	1.1-6
+latticeExtra	0.6-31
+limma	3.66.0
+plotly	4.12.1
+prettyunits	1.2.0
+progress	1.2.3
+pwalign	1.6.0
+RCurl	1.98-1.20
+rjson	0.2.23
+statmod	1.5.2
+[haydar_methylation]
+geneLenDataBase	1.46.0
+goseq	1.62.0
+methylGSA	1.28.0
+mgcv	1.9-4
+org.Mm.eg.db	3.22.0
+TxDb.Mmusculus.UCSC.mm10.knownGene	3.10.0
+txdbmaker	1.6.2
