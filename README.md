@@ -140,33 +140,4 @@ Each script's header records the analysis choices behind it (dated, as agreed wh
 Legend numbers (gene/DMR/term counts, FDRs, odds ratios) are printed by the prep and plot scripts and land in
 `logs/stage5_*.log`. `verification/REPORT.md` lists them.
 
-## What was changed from the original analysis code
 
-The scripts are copies of the ones that made the figures. The analysis logic is unchanged, except as listed here.
-- **Paths:** paths come from `R/paths.R` / `py/paths.py` instead of absolute paths.
-- **00b / 06b split:** `00b_build_mm39_annotation.R` lost the two sections that read the DMRcate result. These
-  are the native-manifest liftover cross-check and `tested_gene_background.rds`. They moved to
-  `06b_gene_background.R`, so the order is 00b → 06 → 06b with no cycle. Its diagnostic read of the RNA-seq
-  results was dropped.
-- **06_dmrcate.R:** the identity check against an archived mm10-era result was removed (the archive isn't
-  shipped).
-- **KEGG dropped:** both KEGG analyses (dmGsea `getKEGG`, clusterProfiler `gseKEGG`) were removed. Both need
-  live KEGG access and neither feeds a figure.
-- **run_gsea_gene_NS.R:** the pairwise 0-vs-N comparisons were removed.
-- **12_dmgsea_plots.R:** trimmed to the shared-term table that Fig 2 uses.
-- **Snakefile:** the TEtranscripts rules were removed (TE analysis, not in these figures). Config and reference
-  paths come from `config/paths.yaml`. FASTQ links are rebuilt from the manifest by `make_fastq_links.py`.
-
-## Analyses not included
-
-These were part of the project but feed none of these figures:
-- **TE analysis:** TE differential expression (TEtranscripts, SQuIRE locus/subfamily) and TE × methylation.
-- **Other RNA-seq analyses:** ORA enrichment (clusterProfiler, g:Profiler), pairwise 0-vs-N DESeq2, ashr-vs-apeglm
-  shrinkage comparison, extra RNA-seq heatmaps/volcanoes/Venns/UpSets.
-- **Methylation QC and DMR diagnostics:** PCA/QC figures (02–05); DMR size, distance, genomic-feature, TSS and
-  cCRE classification (06b–06g in the original numbering); pairwise DMRcate, volcano grids, Venns (06h–06k).
-- **Other methylation enrichment and plots:** goseq enrichment (07–09), DMR pathway plots, methylglm (14–15),
-  cnet plots.
-- **Other integration analyses:** starburst plots, feature- and cCRE-stratified integration, gene/pathway overlap
-  Venns and bar-trees.
-- **Not code:** exploratory side analyses and slide decks.
