@@ -1,5 +1,5 @@
 # Shared mm39 / GENCODE vM32 annotation accessors for the methylation side and
-# every downstream script (since 2026-10-07; built by 00b_build_mm39_annotation.R).
+# every downstream script (built by 00b_build_mm39_annotation.R).
 # Replaces sesameData_getManifestGRanges("MM285") (mm10), sesameData mm10 gene
 # models, TxDb.Mmusculus.UCSC.mm10.knownGene and the mm10 ENCODE cCRE BED.
 
