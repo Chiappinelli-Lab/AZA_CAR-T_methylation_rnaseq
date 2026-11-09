@@ -36,7 +36,6 @@ if want 1; then
   conda run -n data_analysis python workflow/01_rnaseq_pipeline/make_fastq_links.py \
     "$(cfg data.rnaseq_fastq_dir)" metadata/haydar_rnaseq_sample_manifest.tsv "$WD/raw_files/batch1"
   EMAIL=$(cfg slurm.email)
-  # SLURM_EXCLUDE=node1,node2 keeps rule jobs off bad nodes (2026-10-20: STAR hit std::bad_alloc on one node only)
   EXTRA="${EMAIL:+--mail-type=FAIL --mail-user=$EMAIL}${SLURM_EXCLUDE:+ --exclude=$SLURM_EXCLUDE}"
   EXTRA="'${EXTRA# }'"
   sed -e "s|@BINDS@|$(cfg slurm.singularity_binds)|" -e "s|@JOIN@|$(cfg slurm.squire_join_binary)|" \
