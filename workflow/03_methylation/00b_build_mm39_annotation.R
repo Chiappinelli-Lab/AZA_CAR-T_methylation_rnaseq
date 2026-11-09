@@ -1,9 +1,6 @@
 # Build the mm39 / GENCODE vM32 annotation the methylation side uses since
 # 2026-10-07, so methylation coordinates and probe -> gene assignment share the
-# RNA-seq's genome and gene annotation (RNA-seq: mm39, GENCODE vM32). Before
-# this, everything here was mm10: sesame's MM285 manifest, sesameData mm10 gene
-# models, TxDb.Mmusculus.UCSC.mm10.knownGene, ENCODE mm10 cCREs (snapshot in
-# archive/pre_mm39_liftover_2026-10-07/). Choices confirmed with the user:
+# RNA-seq's genome and gene annotation (RNA-seq: mm39, GENCODE vM32). 
 #   - Probe coordinates: sesame's mm10 MM285 manifest lifted with the UCSC
 #     mm10ToMm39 chain. A probe is kept only if it lifts to exactly one range of
 #     the same width on a standard chromosome (chr1-19/X/Y/M); everything else is
@@ -25,9 +22,6 @@
 #     tested_genes = genes with a tested probe within 5kb (07's window rule).
 #     Only genes_gr is read by current scripts.
 # Run in env haydar_methylation, before 06_dmrcate.R.
-# Publication copy: sections 1, 3, 4, 5 only. Section 2 (cross-check against the
-# native mm39 manifest) and section 6 (tested_gene_background.rds) need the
-# 06_dmrcate.R result and moved to 06b_gene_background.R, which runs after 06.
 # The diagnostic count of RNA-seq genes missing from genes_gr is dropped.
 
 suppressMessages({
