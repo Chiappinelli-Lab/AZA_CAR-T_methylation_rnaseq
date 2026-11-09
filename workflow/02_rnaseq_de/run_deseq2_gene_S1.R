@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # DESeq2 gene-level AZA dose-response test in STIMULATED (S1: one 2:1 GL261-B7H3
-# co-culture) CAR-T cells. Added 2026-09-24 for the collaborators' figure 3
+# co-culture) CAR-T cells. 
 # (IL-2 / IFN-g / TNF expression). Mirrors run_deseq2_gene_NS.R exactly:
 # counts ~ donor + dose_100nM (dose continuous, nM/100), >=10 counts in >=3
 # samples, apeglm shrinkage, sig = padj<0.05 & |log2FC| > 0.5.
