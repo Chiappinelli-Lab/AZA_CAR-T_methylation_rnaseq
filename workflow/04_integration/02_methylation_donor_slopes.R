@@ -12,16 +12,14 @@
 # of the median beta: the latter tracks whichever probe sits in the middle of
 # the gene's baseline beta range and correlated only rho=0.70 with dmGsea's
 # per-gene median probe change (gene_median_beta_change.csv). This version's
-# meth_slope_avg_donors x 200 equals that column exactly (r = 1, checked
-# 2026-09-24), so it is the same gene value shown in 13_meth_rna_cnet.R.
+# meth_slope_avg_donors x 200 equals that column exactly, so it is the same gene value shown in 13_meth_rna_cnet.R.
 #
-# Gene assignment switched 2026-09-24 (with the user) from "mean over all
-# DMRs within 5kb" to the dmGsea probe->gene mapping (meth_gene_mapping.R,
+# Gene assignment set to the dmGsea probe->gene mapping (meth_gene_mapping.R,
 # same as Haydar_Methylation_Array/scripts/11_dmgsea.R), so gene-level values
 # match the pathway analysis and don't scale with gene length/probe count.
 # Every gene with >=1 mapped probe gets a value (not only genes near a DMR);
 # is_sig_DMR_gene = >=1 of its probes inside one of the 507 filtered DMRs.
-# Pre-switch outputs: integration/archive/pre_dmgsea_gene_mapping_2026-09-24/.
+
 
 suppressPackageStartupMessages({
   library(data.table)
