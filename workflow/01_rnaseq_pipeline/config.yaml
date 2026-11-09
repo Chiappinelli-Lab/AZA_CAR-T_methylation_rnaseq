@@ -1,4 +1,4 @@
-# Pipeline parameters (unchanged from Haydar_RNAseq/config/RNAseq.standard.with.SQuiRE.Snakemake.config.yaml).
+# Pipeline parameters
 # Reference/container paths are in config/paths.yaml (rnaseq_pipeline:); working_dir is set by run_all.sh.
 raw_file_extension: 'fastq.gz'
 Picard_strandedness: 'SECOND_READ_TRANSCRIPTION_STRAND'  # rRNA-depletion total-RNA stranded (dUTP-style, reverse) library
