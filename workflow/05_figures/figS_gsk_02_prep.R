@@ -1,13 +1,10 @@
 #!/usr/bin/env Rscript
-# GSK-3484862 supplementary figure, plot-ready data (added 2026-10-19; collaborator request to regenerate the GSK
-# heatmap in our style, plus GSK vs AZA). Run in env `haydar_methylation`. All betas are the shared sesame QCDPBM matrix
-# (results/qc/betas_QCDPBM.rds), so GSK and AZA went through identical processing. B7H3 CAR arm only (STOP
-# excluded, as everywhere else).
+# GSK-3484862 supplementary figure, plot-ready data. All betas are the shared sesame QCDPBM matrix
+# (results/qc/betas_QCDPBM.rds), so GSK and AZA went through identical processing.
 #
 # Writes to paper_figures/figS_gsk_methylation/data/:
 #   top500_gsk_{matrix,samples}.csv -- panel A: the 500 most variable CpG (cg) probes across the 4 GSK samples
-#     (EV03, 0/50/100/200 nM), beta values; the plot z-scores rows. Same definition as the collaborators'
-#     original "Top 500 Variable Methylation Probes" heatmap.
+#     (EV03, 0/50/100/200 nM), beta values; the plot z-scores rows. 
 #   dmr507_delta_{matrix,samples}.csv -- panel B: the 507 AZA DMRs (06_dmrcate.R, |meandiff| > 0.10), region
 #     mean beta (complete-case probes across the 16 B7H3 samples) minus the same donor's 0 nM value, for the
 #     3 AZA donors and the GSK donor. Within-donor delta replaces the donor adjustment of Fig 2B, which can't
@@ -20,7 +17,7 @@
 #     centring rather than subtracting the 0 nM sample, so one noisy untreated array doesn't drive selection.
 #     The matrix holds delta beta vs the same donor's 0 nM (the display, matching panel B).
 #   gsk_vs_aza_dmr507_slopes.csv -- panel D: copy of results/gsk_vs_aza/part1_dmr507_slopes.csv (per-DMR, per-donor
-#     OLS slope of region beta on dose, per 100 nM; Haydar_Methylation_Array/scripts/13_gsk_vs_aza.R part 1).
+#     OLS slope of region beta on dose, per 100 nM).
 #   gsk_vs_aza_probe_volcano.csv / gsk_vs_aza_counts.csv -- panel E: per-probe limma contrast dose_GSK - dose_AZA
 #     (13_gsk_vs_aza.R part 2): beta-scale slope difference over 0 -> 200 nM and BH FDR; and the DMR counts
 #     (|meandiff| > 0.10, by sign, and overlap with the 507 AZA DMRs).
@@ -31,8 +28,7 @@
 #     probes at FDR < 0.05 on the contrast; H = every DMRcate DMR (all FDR-significant), slope = mean of the slopes
 #     of the contrast's probes inside the DMR (the way DMRcate averages `diff` into meandiff; identical to meandiff
 #     except 10 DMRs with one extra probe, max difference 0.028), with passes_filter.
-#   (A single-donor DMRcate panel was tried and dropped: no probe reached FDR < 0.05 for any donor, AZA
-#   included; Haydar_Methylation_Array/archive/single_donor_dmrcate_2026-10-19/.)
+
 suppressPackageStartupMessages({
   library(data.table)
   library(GenomicRanges)
