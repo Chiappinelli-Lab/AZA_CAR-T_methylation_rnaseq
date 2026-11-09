@@ -1,8 +1,5 @@
 #!/usr/bin/env Rscript
-# GSEA (GO:BP) on the NS gene-level AZA dose-response model -- a
-# cutoff-free alternative to the over-representation analysis in
-# run_enrichment_gene_NS.R (added 2026-09-22 so pathway results don't depend
-# on an arbitrary padj/log2FC threshold).
+# GSEA (GO:BP) on the NS gene-level AZA dose-response model 
 #
 # Ranking metric: DESeq2 Wald statistic for dose_100nM (unshrunk LFC / SE),
 # pulled from results/gene_NS/dds.rds because results_full.csv only stores the
@@ -11,15 +8,12 @@
 # shrunk to ~0 into large ties.
 # Gene universe = every gene with a non-NA Wald stat (the >=10-in->=3 filtered
 # set, minus DESeq2 outlier/all-zero genes); no independent-filtering step.
-# GO settings match the ORA script: BP, gene-set size 15-500, BH, simplify()
+# GO:BP settings, gene-set size 15-500, BH, simplify()
 # at 0.7 (Wang). Output -> results/gene_NS/enrichment_gsea/, including
 # GO_BP_{up,down}_simplified.csv (split by NES sign) so
 # run_pathway_diverging_bar.R gsea can plot it.
 #
-# Publication copy: only the dose-response comparison (the pairwise 0v50/0v100/
-# 0v200 runs need run_deseq2_gene_NS_pairwise_vs_0.R, which feeds no figure), and
-# the KEGG GSEA (gseKEGG, needs live KEGG access, feeds no figure) is dropped.
-# The GO:BP run is unchanged.
+
 suppressPackageStartupMessages({
   library(data.table)
   library(DESeq2)
