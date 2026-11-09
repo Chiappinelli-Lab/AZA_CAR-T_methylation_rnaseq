@@ -1,7 +1,7 @@
 # Load all 24 IDATs and run basic per-sample QC for the Haydar mouse
 # methylation array project (Infinium Mouse Methylation BeadChip / MM285).
 #
-# Preprocessing choices confirmed with the user on 2026-09-04:
+# Preprocessing choices:
 #   - prep chain: QCDPBM (qualityMask -> infer Infinium-I channel ->
 #     nonlinear dye-bias correction -> pOOBAH detection masking -> noob
 #     background subtraction -> matchDesign). No strain inference (T)
@@ -10,7 +10,7 @@
 #     sesame's "recommended" set, because "recommended" also includes
 #     the `nonunique` mask (probes with mapQ==0, i.e. non-unique genomic
 #     mapping) which would systematically remove repeat/TE-derived
-#     probes -- and this project needs those for TE methylation analysis.
+#     probes.
 #   - pOOBAH detection p-value threshold: 0.05 (sesame default).
 #   - background subtraction: noob (sesame default), not scrub.
 #   - min_beads: 1 (sesame default, minimal bead-count filtering).
@@ -24,7 +24,7 @@
 #     so a batch correction would just re-absorb donor variation. Donor
 #     stays as the blocking/random effect in the DM model instead.
 #   - matchDesign (M) is stochastic in sesame 1.28.1. set.seed(1) before each sample's prepSesame()
-#     (added 2026-10-21 for the publication repo) makes reruns identical. The paper's results come
+#     makes reruns identical. The paper's results come
 #     from an earlier unseeded run, so a fresh run here does NOT reproduce them digit for digit: to
 #     reproduce the paper, set METH_PREPROCESSED (env) or methylation_preprocessed_override
 #     (config/paths.yaml) to the folder holding the deposited sdfs_QCDPBM.rds / betas_QCDPBM.rds,
