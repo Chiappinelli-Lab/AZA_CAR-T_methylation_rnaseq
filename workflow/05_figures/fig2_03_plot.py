@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """Paper figure: AZA dose-response in B7H3 CAR-T cells, RNA-seq x DNA methylation.
 
-Run in env `data_analysis` after fig2_01_prep_rna.R (deseq2) and fig2_02_prep_meth.R
-(haydar_methylation). Added 2026-09-24.
-
 Panels (one plot_* function each, all drawing into a single `ax` container, so
 the same code builds the composite and the standalone panels -- the composite is
 NOT stitched from saved files):
@@ -22,7 +19,7 @@ they are identical apart from the panel letter.
 Outputs (vector; fonts embedded as TrueType so text stays editable):
   figures/fig2_rna_methylation/Fig2_rna_methylation.{pdf,svg}
   figures/fig2_rna_methylation/panels/Fig2<letter>_<name>.{pdf,svg}
-(Figure 2 of the paper; moved into fig2_rna_methylation/ and renamed from Figure_RNA_methylation 2026-09-25.)
+
 """
 import sys
 from pathlib import Path
