@@ -7,8 +7,7 @@
 # mapping (meth_gene_mapping.R) -- but keeps the per-sample matrix instead of
 # collapsing straight to a per-donor slope, since the heatmap script needs both
 # the full per-sample matrix and a per-dose (averaged across donors) trajectory.
-# Switched 2026-09-24 from "mean region-average beta over all DMRs within 5kb";
-# every candidate gene with a mapped probe now has data, DMR or not.
+
 
 suppressPackageStartupMessages({
   library(data.table)
