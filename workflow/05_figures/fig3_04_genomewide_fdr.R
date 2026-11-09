@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
-# Do the Fig 3 cytokine / type I IFN methylation changes hold up genome-wide with BH correction? (2026-09-25)
-# Env `haydar_methylation`. Two views, same 12 samples (5-Aza, B7H3 CAR, 3 donors x 4 doses):
+# Do the Fig 3 cytokine / type I IFN methylation changes hold up genome-wide with BH correction? 
+#  Two views, same 12 samples (5-Aza, B7H3 CAR, 3 donors x 4 doses):
 #  1. gene level -- the Fig 3 test (median beta over promoter + body probes, beta ~ donor + dose) run on EVERY
 #     mapped gene, BH across genes. Ordinary OLS t (exactly the Fig 3 p-values) and limma-moderated t.
 #     The pooled Ifna family is added as one extra unit (as in the figure).
