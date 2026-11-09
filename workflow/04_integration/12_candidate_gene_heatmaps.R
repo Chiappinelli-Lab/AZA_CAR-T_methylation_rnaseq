@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 # 3-panel (RNA expression | DNA methylation | RNA<->Meth correlation) heatmap
-# per candidate gene set from the custom pathway list ("Candidate Genes Methyl Array
-# RNA Seq EV.docx"). Inputs built by 10_candidate_gene_rna_data.R (deseq2
+# per candidate gene set from the custom pathway list. Inputs built by 10_candidate_gene_rna_data.R (deseq2
 # env) and 11_candidate_gene_meth_data.R (haydar_methylation env).
 #
 # Panel 1 (RNA):  row-Z-scored, donor-corrected log2 normalized counts, NS
