@@ -31,7 +31,7 @@ fwrite(as.data.table(betas, keep.rownames = "probe")[, symbol := gmap$symbol[mat
        file.path(out_dir, "meth_unstimulated_probe_betas.csv"))
 print(stats)
 
-## ---- type I IFNs (collaborator question 2026-09-25) -> meth_unstimulated_{long,stats}_ifn.csv ----
+## ---- type I IFNs-> meth_unstimulated_{long,stats}_ifn.csv ----
 # Ifnb1, and the Ifna family pooled as one "Ifna" gene (median over all Ifna1-16 + Ifnab probes; pseudogene
 # Ifna-ps1 excluded) to match the pooled RNA value.
 gmap_ifn <- load_meth_gene_probe_map()[symbol == "Ifnb1" | grepl("^Ifna([0-9]+|b)$", symbol)]
