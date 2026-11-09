@@ -58,9 +58,7 @@ message("resultsNames(dds): ", paste(resultsNames(dds), collapse = ", "))
 
 ## ---- 5. Extract AZA dose-response effect ----
 res <- results(dds, name = "dose_100nM", alpha = 0.05)
-# apeglm shrinkage (confirmed with the user 2026-09-22, replacing ashr): ashr
-# only sees the MLE + SE, so all-zero-in-one-group genes kept |LFC| ~ 18-28;
-# apeglm uses the count likelihood and shrinks them to ~0.
+# apeglm shrinkage 
 res_shrunk <- lfcShrink(dds, coef = "dose_100nM", res = res, type = "apeglm")
 
 ## ---- 6. Annotate with gene symbols ----
@@ -72,7 +70,6 @@ res_df$symbol <- mapIds(org.Mm.eg.db, keys = res_df$ensembl_id,
 res_df$gene_name <- mapIds(org.Mm.eg.db, keys = res_df$ensembl_id,
                             column = "GENENAME", keytype = "ENSEMBL", multiVals = "first")
 # Significance call: padj<0.05 AND |log2FC per 100nM AZA| > 0.5 (confirmed
-# with the user 2026-09-14, replacing the earlier padj-only call -- an
 # effect-size floor on top of the FDR test. Kept in per-100nM units rather
 # than re-expressing as "fold-change over 0->200nM" because not every
 # donor has a 200nM sample (EV19/EV20 max out at 100nM); 0.5 per 100nM is
@@ -121,20 +118,11 @@ p_ma <- ggplot(res_df, aes(baseMean, log2FoldChange, color = sig)) +
 ggsave(file.path(out_dir, "MA_plot.png"), p_ma, width = 6, height = 5)
 
 # Horizontal dashed line: the raw p-value equivalent of the padj<0.05
-# boundary (max raw pvalue among padj<0.05 genes, since BH is monotonic in
-# p) -- the volcano's y-axis is raw -log10(p), not -log10(padj), so this is
-# the honest way to show where that FDR cutoff actually falls on this axis.
+# boundary (max raw pvalue among padj<0.05 genes p)
 p_cutoff_at_padj05 <- if (any(res_df$padj < 0.05, na.rm = TRUE)) {
   max(res_df$pvalue[which(res_df$padj < 0.05)], na.rm = TRUE)
 } else NA_real_
 
-# log2FoldChange is heavily right/left-skewed by a handful of near-zero-
-# baseline genes reaching |log2FC| up to ~20, while 95% of genes fall
-# within +/-0.06 -- a linear x-axis squashes essentially every point into
-# a sliver near 0. scales::pseudo_log_trans (a ggplot2 dependency, no new
-# package needed) is linear near zero -- so the +/-1 cutoff lines and the
-# bulk of points stay readable -- and compresses log-like further out, so
-# the few extreme outliers no longer dominate the axis range.
 volcano_breaks <- c(-16, -8, -4, -2, -1, 0, 1, 2, 4, 8, 16)
 p_volcano <- ggplot(res_df, aes(log2FoldChange, -log10(pvalue), color = sig)) +
   geom_point(alpha = 0.5, size = 0.8) +
