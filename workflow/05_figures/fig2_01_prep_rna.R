@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 # Paper figure (RNA-seq x methylation integration), RNA-side plot-ready data.
-# Run in env `deseq2`; then fig2_02_prep_meth.R (env haydar_methylation), then
-# fig2_03_plot.py (env data_analysis). Added 2026-09-24.
+
 #
 # Writes to paper_figures/fig2_rna_methylation/data/:
 #   de_heatmap_matrix.csv / de_heatmap_samples.csv -- panel A: the 111 DE genes
