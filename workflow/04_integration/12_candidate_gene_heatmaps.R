@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # 3-panel (RNA expression | DNA methylation | RNA<->Meth correlation) heatmap
-# per candidate gene set from the collaborators' list ("Candidate Genes Methyl Array
+# per candidate gene set from the custom pathway list ("Candidate Genes Methyl Array
 # RNA Seq EV.docx"). Inputs built by 10_candidate_gene_rna_data.R (deseq2
 # env) and 11_candidate_gene_meth_data.R (haydar_methylation env).
 #
@@ -8,9 +8,7 @@
 #   samples, all 5 donors x 4 doses (18 samples; EV19/EV20 missing the
 #   200nM point), columns grouped by dose (donor nested within each dose
 #   block). Donor correction via limma::removeBatchEffect(batch = donor,
-#   design = ~dose_nM) -- same method/rationale as the donor-adjusted DMR
-#   heatmap in Haydar_Methylation_Array/scripts/08_dmr_pathway_plots.R
-#   (confirmed with the user 2026-09-09): removes the fitted donor baseline
+#   design = ~dose_nM): removes the fitted donor baseline
 #   while preserving the dose effect + real per-sample residual noise.
 # Panel 2 (Meth): row-Z-scored, donor-corrected per-gene composite beta
 #   (median beta over the gene's promoter 1.5kb + gene-body probes, dmGsea
@@ -21,11 +19,8 @@
 # Panel 3 (Corr): Pearson r, per gene, between the RNA and methylation
 #   AZA dose-response trajectories (mean-across-donors value at each of
 #   0/50/100/200nM, n=4 points, computed from the DONOR-CORRECTED matrices
-#   of panels 1/2 -- switched 2026-09-22 from the uncorrected
-#   rna/meth_dose_trajectory.csv means, because EV19/EV20 have no 200nM RNA
-#   sample, so an uncorrected 200nM mean covers a different donor mix than
-#   0-100nM and donor baselines could bend the trajectory) -- gene-level dose-response concordance
-#   across the two independent cohorts (see CLAUDE.md "Critical constraint"),
+#   of panels 1/2 -- gene-level dose-response concordance
+#   across the two independent cohorts,
 #   NOT a per-sample/per-donor paired correlation.
 #   p = two-sided cor.test() p-value (added 2026-10-09); with n=4 (df=2) it
 #   needs |r| > ~0.95 for p<0.05, so it is saved for reference, not plotted.
@@ -133,7 +128,7 @@ meth_col_ann <- HeatmapAnnotation(
 )
 
 row_zscore <- function(m) t(scale(t(m)))
-# Column Z (added 2026-09-23): each sample column Z-scored against the
+# Column Z: each sample column Z-scored against the
 # GENOME-WIDE distribution of that sample -- mean/SD over all 18,267 expressed
 # genes (RNA) or all genes with a promoter/body probe (methylation), after the same
 # donor correction -- so colors say how high a gene sits relative to the
