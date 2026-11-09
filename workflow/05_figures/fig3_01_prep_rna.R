@@ -6,8 +6,6 @@
 #   DESeq2 median-of-ratios size factors estimated ONCE on all 30 samples together (18 unstimulated + 12
 #   stimulated; same >=10 counts in >=3 samples gene filter), normalized count = raw / size factor.
 # Stats are unchanged -- they come from the per-condition dose models (scaling doesn't affect them):
-#   stimulated   -- Haydar_RNAseq/analysis/deseq2/run_deseq2_gene_S1.R (3 donors x 4 doses)
-#   unstimulated -- run_deseq2_gene_NS.R (the primary analysis; 5 donors, EV19/EV20 lack 200 nM)
 #   Same design in both: ~ donor + dose_100nM, apeglm log2FC per 100 nM.
 suppressPackageStartupMessages({ library(data.table); library(DESeq2) })
 source(file.path(Sys.getenv("REPO_ROOT"), "R", "paths.R"))
@@ -51,7 +49,7 @@ for (label in names(CONDS)) {
   print(long[, .(mean_norm = round(mean(norm_count), 1)), by = symbol])
 }
 
-## ---- type I IFNs (collaborator question 2026-09-25: is IL-2 as low as IFN-a/b?) -> rna_<cond>_long_ifn.csv ----
+## ---- type I IFNs -> rna_<cond>_long_ifn.csv ----
 # Ifnb1 and the Ifna family pooled (sum of raw counts over Ifna1-16 + Ifnab; no single Ifna gene is expressed).
 # None passes the >=10-in->=3 filter, so they are not in the DESeq2 fits (no dose stats); counts are taken from
 # the unfiltered matrix and divided by the same joint size factors.
