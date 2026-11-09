@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
-# Per-sample + per-dose RNA-seq data for the collaborators' candidate gene sets
-# ("Candidate Genes Methyl Array RNA Seq EV.docx"), feeding the RNA panel
+# Per-sample + per-dose RNA-seq data for the  candidate gene sets
+# feeding the RNA panel
 # of the per-pathway 3-panel (expression / methylation / correlation)
 # heatmaps built in 12_candidate_gene_heatmaps.R.
 #
@@ -48,7 +48,7 @@ rownames(expr_mat) <- map$symbol
 expr_dt <- as.data.table(expr_mat, keep.rownames = "symbol")
 fwrite(expr_dt, file.path(out_dir, "rna_expr_wide.csv"))
 
-# Genome-wide reference for the column-Z heatmaps (added 2026-09-23): every
+# Genome-wide reference for the column-Z heatmaps: every
 # gene in the dds (the 18,267 passing >=10 counts in >=3 samples), keyed by
 # Ensembl feature ID; 12_candidate_gene_heatmaps.R Z-scores each sample column
 # of the candidate genes against this matrix's column mean/SD.
