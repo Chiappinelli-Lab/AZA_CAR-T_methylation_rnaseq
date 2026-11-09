@@ -1,10 +1,6 @@
 """
 RNA-seq pipeline for the publication repo: FASTQ -> SQuIRE gene-level count matrix.
 
-Copied from Haydar_RNAseq/RNAseq.standard.with.SQuiRE.Snakefile. Rule logic, tool versions and parameters are
-unchanged. Changes for the publication copy:
-- TEtranscripts rules (TEtranscripts, create_count_file_list, combine_counts) removed: they feed only the TE
-  analysis, which is not part of the paper figures.
 - No configfile: directive. run_all.sh passes config/paths.yaml (reference paths, SQuIRE container) and
   workflow/01_rnaseq_pipeline/config.yaml (parameters), plus working_dir=<repo>/results/rnaseq/.
 - conda env yamls live next to this Snakefile (envs/); combine_squire_counts.py is found via workflow.basedir.
