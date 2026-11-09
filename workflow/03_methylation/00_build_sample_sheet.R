@@ -1,7 +1,6 @@
 # Build the canonical sample sheet for the Haydar mouse methylation array project
 # from "Methyl Array Sample Manifest EV.xlsx" (donor/dose/CAR-arm metadata, Sheet1)
-# and its IDAT-basename cross-reference (Sheet2). Confirmed against project memory
-# and with the user on 2026-09-04.
+# and its IDAT-basename cross-reference (Sheet2). 
 
 suppressMessages({
   library(readxl)
