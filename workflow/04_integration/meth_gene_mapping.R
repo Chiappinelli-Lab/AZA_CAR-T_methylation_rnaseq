@@ -1,8 +1,6 @@
 # Shared probe -> gene mapping for every gene-level methylation value in the
-# integration (sourced by 02, 04a, 11). Added 2026-09-24, replacing the
-# "all genes within 5kb of a DMR" rule (07_pathway_enrichment.R) so that
+# integration  so that
 # gene-level values use the same assignment as the dmGsea pathway analysis
-# (Haydar_Methylation_Array/scripts/11_dmgsea.R):
 #   - a probe belongs to a gene if it lies between 1.5kb upstream of the TSS
 #     and the gene end (promoter + gene body); a probe can map to several genes
 #     (results/dmgsea/gene_probe_table.csv, Entrez -> symbol via org.Mm.eg.db
