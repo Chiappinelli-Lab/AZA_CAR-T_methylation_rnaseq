@@ -1,14 +1,10 @@
 #!/usr/bin/env Rscript
-# Publication copy of 12_dmgsea_plots.R, trimmed to its section 3 table:
 # meth_rna_shared_GO_BP.csv -- methylation GO:BP terms (dmGsea gsProbe, 11_dmgsea.R,
 # FDR<0.05) that are also significant in the RNA-seq dose-response GSEA
 # (workflow/02_rnaseq_de/run_gsea_gene_NS.R, GO_BP_gsea_full.csv, padj<0.05), with the
 # RNA direction from the NES sign. Read by figures/fig2 (panel F term set) via
-# fig2_02_prep_meth.R. Separate cohorts (only EV07 shared) -- pathway-level
-# concordance, not a paired analysis.
-# Dropped from the original (no figure uses them): the bar charts, the goseq
-# comparison (needs 07_pathway_enrichment.R), the UpSet plot, the scatter, the
-# pathway x gene heatmap and the GO tree. Run in env deseq2 (as the original).
+# fig2_02_prep_meth.R.
+
 suppressPackageStartupMessages({
   library(data.table)
 })
