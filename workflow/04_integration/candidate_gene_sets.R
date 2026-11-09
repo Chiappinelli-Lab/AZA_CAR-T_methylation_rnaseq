@@ -1,7 +1,4 @@
-# Candidate gene sets from the collaborators' list ("Candidate Genes Methyl Array RNA
-# Seq EV.docx", uploaded 2026-09-21). Parenthetical aliases in the source
-# doc (e.g. "Dpp4 (CD26)") are stripped to the bare mouse gene symbol used
-# for matching against RNA-seq/methylation gene tables.
+# Candidate gene sets 
 candidate_gene_sets <- list(
   "01_Effector_Function" = c("Ifng","Tnf","Gzmb","Gzma","Prf1","Nkg7","Fasl","Runx3","Eomes","Tbx21"),
   "02_TCell_Signaling_Activation" = c("Dpp4","Shb","Cd83","Cd28","Icos","Lck","Fyn","Zap70","Lat","Lcp2"),
