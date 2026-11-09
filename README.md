@@ -39,7 +39,6 @@ workflow/
   run_stage.sh             runs one of stages 2-5 (script order + conda env per script)
 envs/                      conda exports, R package lists (see SOFTWARE.md)
 results/  figures/  logs/  outputs (not tracked)
-verification/             rerun-vs-original comparison: compare scripts, REPORT.md
 ```
 
 ## Setup
@@ -76,8 +75,7 @@ verification/             rerun-vs-original comparison: compare scripts, REPORT.
      per-rule pipeline envs are built by Snakemake from `workflow/01_rnaseq_pipeline/envs/`.
    - `run_all.sh` sources `~/.bashrc` for `conda activate`, and loads Apptainer with `module load` (module name
      in `slurm.apptainer_module`).
-4. **Cluster.** Set the SLURM account/partition (and optional email) under `slurm:`. The scripts assume SLURM. On
-   another scheduler, run stage 1's `snakemake` command and `workflow/run_stage.sh 2…5` by hand.
+4. **Cluster.** Set the SLURM account/partition (and optional email) under `slurm:`. The scripts assume SLURM. 
 
 ## Running
 
@@ -98,7 +96,6 @@ RNASEQ_COUNTS=/path/to/squire_gene_counts.tsv METH_PREPROCESSED=/path/to/meth_qc
 Every step is deterministic, so a rerun of this repo gives the same output twice. Two steps of the original
 analysis were not, though, so a fresh run from raw data matches the paper's conclusions but not every digit.
 The paper's numbers are reproduced exactly by starting from the two deposited intermediates (command above).
-All of this was checked on 2026-10-20/21; see `verification/REPORT.md`.
 
 - **SQuIRE gene counts (stage 1).** In the original run, SQuIRE Count used 8 threads, which only StringTie uses.
   Multithreaded StringTie splits reads among overlapping transcripts in a thread-order-dependent way, so
@@ -113,9 +110,8 @@ All of this was checked on 2026-10-20/21; see `verification/REPORT.md`.
   - Effect of a fresh IDAT run: 517 filtered DMRs instead of 507, and 452 DMR genes instead of 443. The 26
     shared GO terms are unchanged.
   - The betas are made with `openSesame(sdfs, func = getBetas)`. This applies sesame's default `QCDPB` prep a second
-    time on top of the `QCDPBM` SigDFs. The step is deterministic, and the repo keeps it because the paper's
-    betas were made this way.
-- **NS DESeq2/apeglm** shows floating-point noise across machines (log2FC ≤ 1e-4). No call or figure changes.
+    time on top of the `QCDPBM` SigDFs. 
+
 
 Stage logs go to `logs/stage<N>_<jobid>.log`. Stage 1's Snakemake logs are in `results/rnaseq/logs/`.
 
