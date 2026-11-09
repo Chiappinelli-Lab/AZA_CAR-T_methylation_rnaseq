@@ -1,12 +1,10 @@
 #!/usr/bin/env Rscript
 # Paper figure (RNA-seq x methylation integration), methylation-side and
-# gene-set plot-ready data. Run in env `haydar_methylation` after
-# fig2_01_prep_rna.R. Added 2026-09-24.
+# gene-set plot-ready data.
 #
 # Writes to paper_figures/fig2_rna_methylation/data/:
 #   dmr_heatmap_matrix.csv / dmr_heatmap_samples.csv -- panel B: the 507
-#     filtered DMRs, region-average donor-adjusted beta, computed exactly as the
-#     donor-adjusted heatmap in Haydar_Methylation_Array/scripts/08 (complete-
+#     filtered DMRs, region-average donor-adjusted beta (complete-
 #     case probes, removeBatchEffect(batch = Donor, design = ~AZA), mean over
 #     each DMR's member probes).
 #   pathway_termsim_wang.csv / pathway_tree_hclust.csv -- panel E: Wang GO
