@@ -1,11 +1,10 @@
 #!/usr/bin/env Rscript
-# Figure 3 cytokine panel (collaborators' ask, 2026-09-24): RNA side. Env `deseq2`.
+# Figure 3 cytokine panel: RNA side. Env `deseq2`.
 # Per-sample normalized counts for Il2 / Ifng / Tnf + their dose-model stats, for both conditions.
 #
-# Normalization (changed 2026-09-24 at the user's request, so stimulated vs unstimulated levels are comparable):
+# Normalization:
 #   DESeq2 median-of-ratios size factors estimated ONCE on all 30 samples together (18 unstimulated + 12
 #   stimulated; same >=10 counts in >=3 samples gene filter), normalized count = raw / size factor.
-#   (Previously each condition used the size factors of its own fit, which puts the two rows on different scales.)
 # Stats are unchanged -- they come from the per-condition dose models (scaling doesn't affect them):
 #   stimulated   -- Haydar_RNAseq/analysis/deseq2/run_deseq2_gene_S1.R (3 donors x 4 doses)
 #   unstimulated -- run_deseq2_gene_NS.R (the primary analysis; 5 donors, EV19/EV20 lack 200 nM)
