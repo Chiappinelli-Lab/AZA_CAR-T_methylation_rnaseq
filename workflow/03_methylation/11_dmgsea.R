@@ -3,13 +3,6 @@
 # Motsinger-Reif & Niu 2025, Bioinformatics btaf422), run in goregion style.
 # Added 2026-09-23; choices confirmed with the user:
 #
-# Tool choice -- dmGsea over missMethyl gometh/goregion (Maksimovic et al.
-#   2021). missMethyl 1.44 maps every probe's gene symbol to Entrez via
-#   org.Hs.eg.db + limma::alias2SymbolTable (human) inside .getFlatAnnotation(),
-#   even with a custom `anno`, and truncates probe IDs to 10 characters
-#   (dropping MM285's _TC21/_BC21 suffixes) -- see also 07_pathway_enrichment.R.
-#   dmGsea takes a user-supplied probe->Entrez table and builds mouse GO/KEGG
-#   sets (species = "Mouse").
 #
 # Test choice -- gsProbe with sigProbe = probes inside the 507 filtered DMRs
 #   (FDR + |meandiff| > 0.10, 06_dmrcate.R), allProbe = every tested probe that
@@ -39,10 +32,7 @@
 #   org.Mm.eg.db (first match). A probe can map to several genes.
 #
 # Gene sets: mouse GO:BP (dmGsea::getGO), restricted to the mapped-gene
-#   universe and to 15-500 genes (dmGsea applies no size filter itself; 15-500
-#   matches the other GO analyses). Publication copy: the KEGG collection
-#   (dmGsea::getKEGG) is dropped -- it needs live KEGGREST access and feeds no
-#   figure. The GO:BP run is unchanged.
+#   universe and to 15-500 genes.
 #
 # Output: results/methylation/dmgsea/ -- raw dmGsea CSVs, dmgsea_GO_BP.csv (tidy),
 #   gene_probe_table.csv, dmr_hit_genes.csv (per hit gene: most significant DMR's
