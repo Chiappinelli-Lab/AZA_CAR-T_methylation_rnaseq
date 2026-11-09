@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Supplementary figure: GSK-3484862 vs 5-azacytidine methylation (B7H3 CAR-T, MM285). Added 2026-10-19.
+"""Supplementary figure: GSK-3484862 vs 5-azacytidine methylation (B7H3 CAR-T, MM285).
 
-Run in env `data_analysis` after figS_gsk_02_prep.R. Reuses the Fig 2 style and helpers (fig2_03_plot.py:
+Reuses the Fig 2 style and helpers (fig2_03_plot.py:
 palette, Ward row clustering, annotation strips, vector colorbars, Arial), so these heatmaps match Fig 2B.
 
 Panels (one plot_* function each, drawing into one `ax` container; the composite is drawn in one pass):
@@ -29,7 +29,7 @@ Panels (one plot_* function each, drawing into one `ax` container; the composite
                             rasterized
   H  plot_h_dmr_slopes      the 3,165 DMRs of F (all FDR-significant): mean probe slope per DMR, AZA (x) vs GSK (y);
                             the 616 with |meandiff| > 0.10 highlighted
-(Single-donor DMR panels were tried and dropped 2026-10-19: no donor, AZA included, had a probe at FDR < 0.05.)
+
 
 Outputs: paper_figures/figS_gsk_methylation/FigS_gsk_methylation.{pdf,svg} (+ _preview.png) and
 panels/FigS_gsk<letter>_<name>.{pdf,svg}
