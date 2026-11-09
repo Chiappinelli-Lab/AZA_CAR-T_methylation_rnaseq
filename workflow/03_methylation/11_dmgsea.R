@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 # Gene-set enrichment of the primary DMR hits with dmGsea::gsProbe (Xu,
 # Motsinger-Reif & Niu 2025, Bioinformatics btaf422), run in goregion style.
-# Added 2026-09-23; choices confirmed with the user:
+
 #
 #
 # Test choice -- gsProbe with sigProbe = probes inside the 507 filtered DMRs
@@ -10,7 +10,7 @@
 #   Maksimovic et al.): over-representation of DMR genes, with each gene's
 #   probability of being "hit" weighted by its probe count (noncentral
 #   hypergeometric). The threshold-based alternatives were tried first and
-#   rejected (2026-09-23): 38% of probes are FDR<0.05 (99.7% hypomethylated),
+#   rejected: 38% of probes are FDR<0.05 (99.7% hypomethylated),
 #   so gsPG called ~89% of genes significant (3,523/5,222 GO:BP sets FDR<0.05),
 #   gsProbe at probe FDR<0.05 would call 78.5%, and gsGene ranking was
 #   dominated by long, probe-rich neuronal/developmental genes. With the 507-DMR
