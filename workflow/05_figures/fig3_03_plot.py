@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""Figure 3 cytokine panel for the collaborators (ask of 2026-09-24): IL-2, IFN-g, TNF-a across 0/50/100/200 nM
+"""Figure 3 cytokine panel: IL-2, IFN-g, TNF-a across 0/50/100/200 nM
 AZA -- rows: DNA methylation in UNSTIMULATED cells (array, 3 donors), RNA expression in UNSTIMULATED cells
-(RNA-seq, 5 donors; added at the user's request) and in STIMULATED cells (RNA-seq, 3 donors).
-
-Run in env `data_analysis` after fig3_01_prep_rna.R (deseq2) and fig3_02_prep_meth.R (haydar_methylation).
+(RNA-seq, 5 donors) and in STIMULATED cells (RNA-seq, 3 donors).
 
 Design choices: (1) values are each donor's CHANGE from its own 0 nM sample (delta beta; log2 fold change) --
 donor baselines differ far more than the dose effect (e.g. Il2 beta 0.56 in donor 7 vs 0.70 in donor 1), which
@@ -11,17 +9,16 @@ otherwise hides the trend and puts the mean between donors; (2) with n = 3 per d
 points drawn as a box, so every donor is shown as its own points joined across doses (dose is within-donor).
 Mean bars and a "low expression" note on Il2 were removed at the user's request (the low IL-2 RNA is covered in
 the legend notes).
-`--absolute` draws the alternative version requested 2026-09-24: absolute beta and DESeq2-normalized counts
+`--absolute` draws the alternative version: absolute beta and DESeq2-normalized counts
 instead of change from 0 nM (-> Fig3_cytokines_meth_rna_absolute.{pdf,svg}).
-`--bars` (2026-09-25, the joined lines were hard to follow across doses): one bar per dose = mean over
+`--bars`: one bar per dose = mean over
 donors +/- SEM, bar shaded by the main figure's dose greys, each donor as its own colored point on the bar, no
 lines (-> Fig3_cytokines_meth_rna_{FC,absolute}_bars.{pdf,svg,png}; combines with --absolute).
-`--ifn` (2026-09-25, collaborators asked whether IL-2 is as low as IFN-a/b): adds IFN-b (Ifnb1) and IFN-a (Ifna family
+`--ifn`: adds IFN-b (Ifnb1) and IFN-a (Ifna family
 pooled) columns from the *_ifn.csv prep files; they miss the RNA-seq expression filter, so their RNA panels show
 mean counts instead of a model estimate (-> ..._ifn.png only, for now).
 Style (fonts, donor colors and 1-7 numbering, +1 pt font size of the v1 figure) comes from fig2_03_plot.py.
-Output: paper_figures/fig3_cytokines/Fig3_cytokines_meth_rna_FC.{pdf,svg,png} (change from 0 nM; "_FC" added
-2026-09-25, was unsuffixed)
+Output: paper_figures/fig3_cytokines/Fig3_cytokines_meth_rna_FC.{pdf,svg,png} 
 """
 import importlib.util
 import sys
