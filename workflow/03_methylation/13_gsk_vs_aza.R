@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # GSK-3484862 vs 5-azacytidine dose response, B7H3 CAR arm (added 2026-10-19). The GSK arm is
-# one donor (EV03 = figure donor 8), so both parts compare that donor's dose response with the AZA response;
+# one donor (figure donor 8), so both parts compare that donor's dose response with the AZA response;
 # neither generalizes to GSK (agreed with the user 2026-10-19).
 #
 # Part 1, descriptive (no test), at the 507 AZA DMRs (06_dmrcate.R, |meandiff| > 0.10):
@@ -10,7 +10,7 @@
 #   slopes (user's definition), and, stricter, higher than every AZA donor's slope.
 #
 # Part 2, model: limma on M-values, 16 B7H3 samples (3 AZA donors + the GSK donor, 4 doses each), autosomal
-#   probes complete in all 16 (sex is a donor property: EV03/ZY03 male, EV07/EV08 female). Design
+#   probes complete in all 16. Design
 #   ~ Donor + dose_AZA + dose_GSK (= donor + dose:drug; each drug's dose, per 100 nM, is 0 in the other drug's
 #   samples), so donor absorbs sex, baseline and chip, and there are no drug or sex main effects (not
 #   estimable: both are functions of donor). Contrast dose_GSK - dose_AZA, 10 residual df. The GSK slope's
@@ -72,7 +72,7 @@ p1 <- data.table(dmr = sprintf("%s:%d-%d", seqnames(d507), start(d507), end(d507
                  gsk_above_aza_mean = gsk > aza_mean, gsk_above_all_aza = gsk > apply(slopes[, aza_donors], 1, max))
 fwrite(p1, file.path(out_dir, "part1_dmr507_slopes.csv"))
 p1_lines <- c(
-  "Part 1: GSK donor (EV03, figure donor 8) vs AZA donors at the 507 AZA DMRs (descriptive, no test)",
+  "Part 1: GSK donor (figure donor 8) vs AZA donors at the 507 AZA DMRs (descriptive, no test)",
   "Slope = OLS slope of region-mean beta on dose over each donor's 4 samples, delta beta per 100 nM",
   sprintf("DMRs with region beta (probes complete in all 16 B7H3 samples): %d of %d", nrow(p1), length(dmrs507)),
   sprintf("GSK slope > mean AZA slope: %d of %d", sum(p1$gsk_above_aza_mean), nrow(p1)),
@@ -122,7 +122,7 @@ n_ov507 <- sum(overlapsAny(filt_gr, dmrs507))
 n_507_hit <- sum(overlapsAny(dmrs507, filt_gr))
 p2_lines <- c(
   "Part 2: limma ~ Donor + dose_AZA + dose_GSK on M-values, contrast dose_GSK - dose_AZA (per 100 nM)",
-  "16 B7H3 samples (AZA EV07/EV08/ZY03 + GSK EV03, 4 doses each); autosomal probes complete in all 16",
+  "16 B7H3 samples; autosomal probes complete in all 16",
   "Exploratory: compares one GSK donor's dose response with the AZA response; not generalizable to GSK",
   sprintf("Probes tested: %d; residual df %d; eBayes prior df %.2f", nrow(tt), fit$df.residual[1], fit$df.prior),
   sprintf("Probes at FDR < 0.05: %d (GSK slope higher than AZA: %d; lower: %d)", n_sig,
