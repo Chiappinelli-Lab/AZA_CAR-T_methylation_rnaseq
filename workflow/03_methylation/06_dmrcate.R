@@ -1,9 +1,6 @@
 # Differential methylation region calling (DMRcate) for the primary Aza
-# dose-response comparison, B7H3 CAR arm only. Choices confirmed with the
-# user on 2026-09-09:
-#   - Sample subset: 12 samples -- donors EV07/EV08/ZY03 x 0/50/100/200nM Aza,
-#     B7H3 CAR arm only. STOP-CAR and the GSK donor (EV03, n=1) are excluded,
-#     per the standing primary-comparison design.
+# dose-response comparison, B7H3 CAR arm only. 
+#   - Sample subset: 12 samples 
 #   - Design: ~donor + AZA. Donor is a fixed-effect blocking factor (3
 #     levels). AZA is coded as a continuous numeric dose (linear
 #     dose-response trend, not a 4-level factor) -- coefficient of interest
@@ -38,15 +35,7 @@
 #     annotation step, which this node doesn't have -- overlapping.genes
 #     will come back NA. The core DMR statistics don't depend on that call.
 #     Gene annotation is deferred to its own later pipeline stage.
-#   - 2026-10-07: probe coordinates are now mm39 (sesame's mm10 MM285 manifest
-#     lifted with the UCSC chain, 00b_build_mm39_annotation.R) so DMRs share
-#     the RNA-seq genome. extractRanges() only knows hg19/hg38/mm10, so its
-#     overlapping.genes column (mm10 genes) is overwritten below with overlaps
-#     against GENCODE vM32, the RNA-seq annotation. Per-probe stats (tt) are
-#     coordinate-free and must be identical to the mm10-era run (checked
-#     against the archived result in the original project; the archive is not
-#     part of this repo, so the publication copy drops that check and
-#     verification/ compares tt against the current result instead).
+
 
 suppressMessages({
   library(DMRcate)
