@@ -6,7 +6,7 @@ reads (FASTQ) and methylation array intensities (IDAT). It covers:
 - Infinium Mouse Methylation BeadChip (MM285) profiling of the same treatment;
 - their gene- and pathway-level integration.
 
-> Citation, data accessions and license are placeholders until publication: see `CITATION.md` and `LICENSE`.
+Raw data and count matrices are available on GEO: GSE353449
 
 ## Study design, and why the two assays are integrated at the gene level
 
